@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @gif.image %>
+
 <p>
   <strong>Title:</strong>
   <%= @gif.title %>
@@ -8,11 +10,6 @@
 <p>
   <strong>User:</strong>
   <%= @gif.user_id %>
-</p>
-
-<p>
-  <strong>Public:</strong>
-  <%= @gif.public %>
 </p>
 
 <%= link_to 'Edit', edit_gif_path(@gif) %> |
