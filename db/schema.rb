@@ -38,8 +38,9 @@ ActiveRecord::Schema.define(version: 2020_03_25_163409) do
   end
 
   create_table "gifs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "title", null: false
     t.uuid "user_id", null: false
+    t.string "title", null: false
+    t.string "source_url", null: false
     t.boolean "public", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
