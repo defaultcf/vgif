@@ -5,25 +5,59 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: ruby:2.6.5
-      env:
-        POSTGRES_HOST: postgres
+    env:
+      RAILS_ENV: test
 
     services:
       postgres:
         image: postgres:12.2-alpine
         env:
           POSTGRES_PASSWORD: password
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
 
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.6.5'
       - uses: actions/setup-node@v1
         with:
-          node-version: '10.15.2'
-      - name: Build and test
+          node-version: '12.x'
+
+      - name: bundle config
         run: |
-          bundle install -j4 -r3
+          bundle config path vendor/bundle
+      - uses: actions/cache@v1
+        id: bundle_cache
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: bundle install
+        run: |
+          bundle install -j4 -r3 --path vendor/bundle
+
+      - name: Get yarn cache dir
+        id: yarn_cache_dir
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v1
+        id: yarn_cache
+        with:
+          path: ${{ steps.yarn_cache_dir.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Test
+        run: |
           bundle exec rails db:create
           bundle exec rails db:schema:load
+          bundle exec rails yarn:install webpacker:compile
           bundle exec rspec
