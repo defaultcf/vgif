@@ -178,6 +178,5 @@ RSpec.describe "/gifs", type: :request do
       delete gif_url(gif)
       expect(response).to render_template('errors/403')
     end
-
   end
 end

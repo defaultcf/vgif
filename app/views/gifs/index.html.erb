@@ -6,6 +6,6 @@
 
 <% @gifs.each do |gif| %>
   <%= link_to gif do %>
-    <%= image_tag gif.image %>
+    <%= image_tag gif.image, class: 'gif' %>
   <% end %>
 <% end %>

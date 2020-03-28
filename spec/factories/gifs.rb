@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :gif do
     title { "MyString" }
     source_url { "https://youtube.com" }
-    user { nil }
+    user
     public { false }
 
     after(:build) do |source|
