@@ -1,0 +1,29 @@
+name: Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ruby:2.6.5
+      env:
+        POSTGRES_HOST: postgres
+
+    services:
+      postgres:
+        image: postgres:12.2-alpine
+        env:
+          POSTGRES_PASSWORD: password
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.15.2'
+      - name: Build and test
+        run: |
+          bundle install -j4 -r3
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+          bundle exec rspec
