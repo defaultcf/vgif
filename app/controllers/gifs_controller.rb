@@ -1,5 +1,7 @@
 class GifsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_gif, only: [:show, :edit, :update, :destroy]
+  before_action :can_edit?, only: [:edit, :update, :destroy]
 
   # GET /gifs
   # GET /gifs.json
@@ -70,5 +72,9 @@ class GifsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def gif_params
       params.require(:gif).permit(:image, :title, :source_url, :public).merge(user: current_user)
+    end
+
+    def can_edit?
+      render 'errors/403', status: 403 if @gif.user != current_user
     end
 end
