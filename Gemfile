@@ -32,6 +32,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 # ActiveStorage validation
 gem 'active_storage_validations'
+# Tags
+gem 'acts-as-taggable-on', '~> 6.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -12,6 +12,7 @@ RSpec.describe "gifs/edit", type: :view do
       assert_select "input[name=?]", "gif[image]"
       assert_select "input[name=?]", "gif[title]"
       assert_select "input[name=?]", "gif[source_url]"
+      assert_select "input[name=?]", "gif[tag_list]"
     end
   end
 end
