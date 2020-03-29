@@ -1,4 +1,4 @@
-<%= javascript_pack_tag 'tagify', defer: true %>
+<%= javascript_pack_tag 'gif_form', defer: true %>
 
 <%= form_with(model: gif, local: true) do |form| %>
   <% if gif.errors.any? %>
@@ -16,6 +16,7 @@
   <div class="field">
     <%= form.label :image %>
     <%= form.file_field :image, accept: 'image/gif' %>
+    <%= image_tag action_name == 'new' ? '' : gif.image, id: 'gif-preview' %>
   </div>
 
   <div class="field">
