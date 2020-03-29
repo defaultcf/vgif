@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'tagify', defer: true %>
+
 <%= form_with(model: gif, local: true) do |form| %>
   <% if gif.errors.any? %>
     <div id="error_explanation">
@@ -28,7 +30,7 @@
 
   <div class="field">
     <%= form.label :tag_list %>
-    <%= form.text_field :tag_list %>
+    <%= form.text_field :tag_list, value: gif.tag_list.map { |tag| {value: tag} }.to_json %>
   </div>
 
   <div class="actions">
