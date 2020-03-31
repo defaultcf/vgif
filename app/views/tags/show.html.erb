@@ -3,6 +3,6 @@
 
 <% @gifs.each do |gif| %>
   <%= link_to gif do %>
-    <%= image_tag gif.image, class: 'gif' %>
+    <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(gif.image) %>
   <% end %>
 <% end %>
