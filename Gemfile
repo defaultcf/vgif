@@ -32,6 +32,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'devise'
 # ActiveStorage validation
 gem 'active_storage_validations'
+gem 'mini_magick', '~> 4.10'
 # Tags
 gem 'acts-as-taggable-on', '~> 6.0'
 

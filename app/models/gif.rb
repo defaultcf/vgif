@@ -8,7 +8,8 @@ class Gif < ApplicationRecord
   validates :image,
     attached: true,
     content_type: 'image/gif',
-    size: { less_than: 20.megabytes }
+    size: { less_than: 20.megabytes },
+    dimension: { width: { max: 1000 }, height: { max: 1000 } }
   validate :custom_validator
 
   private
