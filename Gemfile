@@ -28,7 +28,13 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Authentication
 gem 'devise'
+# ActiveStorage validation
+gem 'active_storage_validations'
+gem 'mini_magick', '~> 4.10'
+# Tags
+gem 'acts-as-taggable-on', '~> 6.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

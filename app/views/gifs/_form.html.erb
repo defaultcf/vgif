@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'gif_form', defer: true %>
+
 <%= form_with(model: gif, local: true) do |form| %>
   <% if gif.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +15,8 @@
 
   <div class="field">
     <%= form.label :image %>
-    <%= form.file_field :image %>
+    <%= form.file_field :image, accept: 'image/gif' %>
+    <%= image_tag action_name == 'new' ? '' : gif.image, id: 'gif-preview' %>
   </div>
 
   <div class="field">
@@ -26,7 +29,13 @@
     <%= form.url_field :source_url %>
   </div>
 
+  <div class="field">
+    <%= form.label :tag_list %>
+    <p>YouTuber名、所属グループ名、かわいい、など書くとイイゾ</p>
+    <%= form.text_field :tag_list, value: gif.tag_list.map { |tag| {value: tag} }.to_json %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.button type: 'button', onclick: 'submit()' %>
   </div>
 <% end %>

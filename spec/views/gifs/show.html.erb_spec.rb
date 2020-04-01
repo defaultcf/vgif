@@ -5,6 +5,7 @@ RSpec.describe "gifs/show", type: :view do
     @gif = assign(:gif, create(:gif, {
       title: 'すいちゃんは今日も可愛い',
       source_url: 'https://youtube.com',
+      tag_list: '星街すいせい, 可愛い'
     }))
   end
 
@@ -12,5 +13,6 @@ RSpec.describe "gifs/show", type: :view do
     render
     expect(rendered).to match(/すいちゃんは今日も可愛い/)
     expect(rendered).to match(/https:\/\/youtube\.com/)
+    expect(rendered).to match(/星街すいせい/)
   end
 end

@@ -55,8 +55,30 @@ RSpec.describe "/gifs", type: :request do
   end
 
   describe "POST /create" do
+    let(:attributes) {
+      attributes_for(:gif,
+        image: fixture_file_upload(
+          Rails.root.join('spec', 'factories', 'images', 'lulu_wink.gif'),
+          'image/gif',
+        ),
+      )
+    }
+    # 一先ず20MBを上限とする
+    let(:largefile) {
+      fixture_file_upload(
+        Rails.root.join('spec', 'factories', 'images', 'largefile_suichan.gif'),
+        'image/gif',
+      )
+    }
+    let(:jpegfile) {
+      fixture_file_upload(
+        Rails.root.join('spec', 'factories', 'images', 'me.jpg'),
+        'image/jpeg',
+      )
+    }
+
     it 'when not login, redirect login page' do
-      post gifs_url, params: { gif: attributes_for(:gif) }
+      post gifs_url, params: { gif: attributes }
       expect(response).to redirect_to(new_user_session_path)
     end
 
@@ -67,12 +89,12 @@ RSpec.describe "/gifs", type: :request do
 
       it "creates a new Gif" do
         expect {
-          post gifs_url, params: { gif: attributes_for(:gif) }
+          post gifs_url, params: { gif: attributes }
         }.to change(Gif, :count).by(1)
       end
 
       it "redirects to the created gif" do
-        post gifs_url, params: { gif: attributes_for(:gif) }
+        post gifs_url, params: { gif: attributes }
         expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))
       end
     end
@@ -84,12 +106,24 @@ RSpec.describe "/gifs", type: :request do
 
       it "does not create a new Gif" do
         expect {
-          post gifs_url, params: { gif: attributes_for(:gif, title: nil) }
+          post gifs_url, params: { gif: attributes.merge(title: '') }
+        }.to change(Gif, :count).by(0)
+      end
+
+      it 'large file cant upload' do
+        expect {
+          post gifs_url, params: { gif: attributes.merge(image: largefile) }
+        }.to change(Gif, :count).by(0)
+      end
+
+      it 'jpeg file cant upload' do
+        expect {
+          post gifs_url, params: { gif: attributes.merge(image: jpegfile) }
         }.to change(Gif, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
-        post gifs_url, params: { gif: attributes_for(:gif, title: nil) }
+        post gifs_url, params: { gif: attributes.merge(title: nil) }
         expect(response).to be_successful
       end
     end

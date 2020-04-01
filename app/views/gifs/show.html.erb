@@ -15,5 +15,12 @@
   <%= @gif.user_id %>
 </p>
 
+<p>
+  <strong>Tags:</strong>
+  <% @gif.tag_list.map do |tag| %>
+    <%= link_to tag, tag_path(tag) %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_gif_path(@gif) %> |
 <%= link_to 'Back', gifs_path %>
