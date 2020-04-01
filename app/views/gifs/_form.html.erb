@@ -31,10 +31,11 @@
 
   <div class="field">
     <%= form.label :tag_list %>
+    <p>YouTuber名、所属グループ名、かわいい、など書くとイイゾ</p>
     <%= form.text_field :tag_list, value: gif.tag_list.map { |tag| {value: tag} }.to_json %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.button type: 'button', onclick: 'submit()' %>
   </div>
 <% end %>
