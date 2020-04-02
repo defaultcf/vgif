@@ -16,7 +16,7 @@
   <div class="field">
     <%= form.label :image %>
     <%= form.file_field :image, accept: 'image/gif' %>
-    <%= image_tag action_name == 'new' ? '' : gif.image, id: 'gif-preview' %>
+    <%= image_tag gif.image.attached? ? gif.image : '', id: 'gif-preview' %>
   </div>
 
   <div class="field">
