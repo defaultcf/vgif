@@ -1,8 +1,4 @@
 <h1>タグ: <%= params[:tag_name] %></h1>
 <p><%= @gifs.count %>枚</p>
 
-<% @gifs.each do |gif| %>
-  <%= link_to gif do %>
-    <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(gif.image) %>
-  <% end %>
-<% end %>
+<%= render partial: 'gifs/gifgrid', locals: { gifs: @gifs } %>

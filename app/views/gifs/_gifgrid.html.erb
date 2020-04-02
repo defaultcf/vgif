@@ -1,0 +1,9 @@
+<div class="columns">
+<% gifs.each do |gif| %>
+  <%= link_to gif, class: 'column' do %>
+    <figure class="image">
+      <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(gif.image) %>
+    </figure>
+  <% end %>
+<% end %>
+</div>

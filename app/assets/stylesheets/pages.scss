@@ -6,6 +6,24 @@ html, body {
   flex-direction: column;
 }
 
-.container {
+.my-container {
   flex: 1;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media screen and (max-width: 575px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 576px) {
+    width: 540px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 720px;
+  }
+  @media screen and (min-width: 992px) {
+    width: 960px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 1140px;
+  }
 }
