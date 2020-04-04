@@ -4,7 +4,14 @@ const main = () => {
   navbar_burger.addEventListener('click', () => {
     navbar_burger.classList.toggle('is-active');
     navbar_menu.classList.toggle('is-active');
-  })
+  });
+
+  (document.querySelectorAll('.notification .delete') || []).forEach(delete_button => {
+    const notification = delete_button.parentNode;
+    delete_button.addEventListener('click', () => {
+      notification.remove();
+    });
+  });
 };
 
 main();

@@ -43,8 +43,19 @@
     </nav>
 
     <div class="my-container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% if notice %>
+        <div class="notification is-primary is-light">
+          <button class="delete"></button>
+          <%= notice %>
+        </div>
+      <% end %>
+
+      <% if alert %>
+        <div class="notification is-warning">
+          <button class="delete"></button>
+          <%= alert %>
+        </div>
+      <% end %>
 
       <%= yield %>
     </div>

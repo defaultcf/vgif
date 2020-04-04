@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: web.Dockerfile
+      dockerfile: app.Dockerfile
     depends_on:
       - postgres
     ports:
