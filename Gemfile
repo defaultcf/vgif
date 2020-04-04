@@ -31,7 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 # Authentication
 gem 'devise'
 gem 'omniauth-twitter'
-# ActiveStorage validation
+# ActiveStorage
+gem 'aws-sdk-s3', require: false
 gem 'active_storage_validations'
 gem 'mini_magick', '~> 4.10'
 # Tags
