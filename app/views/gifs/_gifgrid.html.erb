@@ -1,0 +1,11 @@
+<div class="tile is-ancestor">
+  <div class="tile is-parent">
+    <% gifs.each do |gif| %>
+      <%= link_to gif, class: 'tile is-3' do %>
+        <figure class="image">
+          <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(gif.image) %>
+        </figure>
+      <% end %>
+    <% end %>
+  </div>
+</div>

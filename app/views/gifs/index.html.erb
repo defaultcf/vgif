@@ -1,11 +1,16 @@
-<h1>GIFs</h1>
+<section class="hero">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">GIFs</h1>
+      <h2 class="subtitle">今日も推しが尊い</h2>
+    </div>
+  </div>
+</section>
 
-<%= link_to 'Upload GIF', new_gif_path %>
+<p>推せ→ <%= link_to 'Upload GIF', new_gif_path, class: 'button is-primary' %></p>
 
-<br />
+<hr />
 
-<% @gifs.each do |gif| %>
-  <%= link_to gif do %>
-    <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(gif.image) %>
-  <% end %>
-<% end %>
+<p>アップロードされたGIFたち</p>
+
+<%= render partial: 'gifs/gifgrid', locals: { gifs: @gifs } %>

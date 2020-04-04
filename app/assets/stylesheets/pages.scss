@@ -1,3 +1,29 @@
-// Place all the styles related to the pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.my-container {
+  flex: 1;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media screen and (max-width: 575px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 576px) {
+    width: 540px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 720px;
+  }
+  @media screen and (min-width: 992px) {
+    width: 960px;
+  }
+  @media screen and (min-width: 1200px) {
+    width: 1140px;
+  }
+}

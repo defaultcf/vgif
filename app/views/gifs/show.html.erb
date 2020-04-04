@@ -18,7 +18,9 @@
 <p>
   <strong>Tags:</strong>
   <% @gif.tag_list.map do |tag| %>
-    <%= link_to tag, tag_path(tag) %>
+    <%= link_to tag_path(tag) do %>
+      <span class="tag is-link"><%= tag %></span>
+    <% end %>
   <% end %>
 </p>
 
