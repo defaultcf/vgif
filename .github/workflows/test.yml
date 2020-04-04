@@ -56,6 +56,8 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Test
+        env:
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
           bundle exec rails db:create db:schema:load
           bundle exec rails yarn:install webpacker:compile
