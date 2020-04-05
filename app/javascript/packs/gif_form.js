@@ -10,6 +10,9 @@ file_field.addEventListener('change', input => {
     reader.readAsDataURL(input.target.files[0]);
   }
 });
+preview.addEventListener('click', () => {
+  file_field.click();
+});
 
 // Tagify
 import Tagify from '@yaireo/tagify'
