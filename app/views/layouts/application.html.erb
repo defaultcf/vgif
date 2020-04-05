@@ -36,7 +36,7 @@
               </div>
             </div>
           <% else %>
-            <%= link_to 'ログイン', new_user_session_path, class: 'navbar-item' %>
+            <%= link_to 'Twitterでログイン', :user_twitter_omniauth_authorize, class: 'navbar-item' %>
           <% end %>
         </div>
       </div>

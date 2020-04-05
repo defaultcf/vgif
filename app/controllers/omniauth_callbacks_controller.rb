@@ -10,4 +10,9 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_registration_url
     end
   end
+
+  def failure
+    set_flash_message! :alert, :failure, kind: 'Twitter', reason: failure_message
+    redirect_to root_path
+  end
 end
