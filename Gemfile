@@ -37,6 +37,8 @@ gem 'active_storage_validations'
 gem 'mini_magick', '~> 4.10'
 # Tags
 gem 'acts-as-taggable-on', '~> 6.0'
+# OGP
+gem 'meta-tags'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

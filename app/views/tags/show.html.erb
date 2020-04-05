@@ -1,4 +1,4 @@
-<h1>タグ: <%= params[:tag_name] %></h1>
+<h1><%= title "タグ:#{params[:tag_name]}" %></h1>
 <p><%= @gifs.count %>枚</p>
 
 <%= render partial: 'gifs/gifgrid', locals: { gifs: @gifs } %>
