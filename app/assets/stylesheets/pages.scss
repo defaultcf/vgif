@@ -6,6 +6,11 @@ html, body {
   flex-direction: column;
 }
 
+.turbolinks-progress-bar {
+  height: 5px;
+  background-color: white;
+}
+
 .my-container {
   flex: 1;
   margin-right: auto;
