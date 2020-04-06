@@ -4,6 +4,10 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-162855092-1');
+  document.addEventListener('turbolinks:load', e => {
+    gtag('config', 'UA-162855092-1', {
+      'page_title': e.target.title,
+      'page_path': e.data.url.replace(window.location.protocol + '//' + window.location.hostname + (window.location.port && ':' + window.location.port), ''),
+    });
+  });
 </script>
-
