@@ -1,5 +1,17 @@
 <%= image_tag @gif.image %>
 
+<div class="field has-addons copy-button">
+  <div class="control has-icons-right">
+    <%= url_field_tag 'public_url', image_public_url(@gif.image), class: 'input', readonly: true %>
+  </div>
+  <div class="control">
+    <button class="button is-info has-tooltip-arrow" data-tooltip-tmp="Copied!">
+      <span class="icon">
+        <i class="fas fa-copy"></i>
+    </button>
+  </div>
+</div>
+
 <p>
   <strong>Title:</strong>
   <%= title @gif.title %>
