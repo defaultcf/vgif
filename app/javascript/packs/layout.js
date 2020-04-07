@@ -27,5 +27,4 @@ const main = () => {
   });
 };
 
-main();
 document.addEventListener('turbolinks:load', main);
