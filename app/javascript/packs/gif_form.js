@@ -17,3 +17,12 @@ preview.addEventListener('click', () => {
 // Tagify
 import Tagify from '@yaireo/tagify'
 new Tagify(document.querySelector('[name="gif[tag_list]"'));
+
+// Submit
+const form = document.querySelector('form');
+const submit_button = document.querySelector('#submit_button');
+submit_button.addEventListener('click', e => {
+  submit_button.setAttribute('disabled', '');
+  submit_button.textContent = 'Wait...';
+  form.submit();
+});
