@@ -45,7 +45,7 @@
       </div>
     </nav>
 
-    <div class="my-container">
+    <div class="<%= @no_container ? '' : 'my-container' %> flex-1">
       <% if notice %>
         <div class="notification is-primary is-light">
           <button class="delete"></button>

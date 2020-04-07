@@ -11,6 +11,10 @@ html, body {
   background-color: white;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 .my-container {
   flex: 1;
   margin-right: auto;
@@ -30,23 +34,5 @@ html, body {
   }
   @media screen and (min-width: 1200px) {
     width: 1140px;
-  }
-}
-
-div.top-gif {
-  position: relative;
-  background: no-repeat center / cover image-url('top.gif');
-  z-index: 0;
-
-  &::before {
-    position: absolute;
-    content: '';
-    background: inherit;
-    filter: blur(2px);
-    z-index: -1;
-    top: -5px;
-    left: -5px;
-    bottom: -5px;
-    right: -5px;
   }
 }
