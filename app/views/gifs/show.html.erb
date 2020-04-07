@@ -5,12 +5,13 @@
 
 <div class="field has-addons copy-button">
   <div class="control has-icons-right">
-    <%= url_field_tag 'public_url', image_public_url(@gif.image), class: 'input', readonly: true %>
+    <%= url_field_tag 'public_url', full_url_for(@gif.image), class: 'input', readonly: true %>
   </div>
   <div class="control">
     <button class="button is-info has-tooltip-arrow" data-tooltip-tmp="Copied!">
       <span class="icon">
         <i class="fas fa-copy"></i>
+      </span>
     </button>
   </div>
 </div>

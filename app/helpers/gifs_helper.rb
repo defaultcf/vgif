@@ -3,7 +3,7 @@ module GifsHelper
     if Rails.env.production?
       url = URI.parse(resource.service_url)
       url.query = ''
-      url.to_s
+      url.to_s.delete_suffix('?')
     else
       full_url_for(resource)
     end
