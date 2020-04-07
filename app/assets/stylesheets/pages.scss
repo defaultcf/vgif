@@ -11,6 +11,10 @@ html, body {
   background-color: white;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
 .my-container {
   flex: 1;
   margin-right: auto;
@@ -31,4 +35,9 @@ html, body {
   @media screen and (min-width: 1200px) {
     width: 1140px;
   }
+}
+
+footer {
+  height: 150px;
+  margin-top: 50px;
 }
