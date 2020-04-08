@@ -9,7 +9,7 @@ module ApplicationHelper
         site_name: :site,
         type: 'website',
         url: request.original_url,
-        title: :title,
+        title: :full_title,
         description: 'VTuberのGIFが集まる場所',
       },
     }
