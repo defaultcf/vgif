@@ -9,7 +9,7 @@ class Gif < ApplicationRecord
     attached: true,
     content_type: 'image/gif',
     size: { less_than: 20.megabytes },
-    dimension: { width: { max: 1000 }, height: { max: 1000 } }
+    dimension: { width: { max: 1500 }, height: { max: 1500 } }
   validate :custom_validator
 
   private
