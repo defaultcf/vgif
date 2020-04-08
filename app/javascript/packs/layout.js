@@ -2,6 +2,9 @@ const main = () => {
   // Navbar burger
   const navbar_burger = document.querySelector('.navbar-burger')
   const navbar_menu = document.querySelector('#navbarMenu');
+  if (navbar_burger.getAttribute('setevent') === 'true') return;
+
+  navbar_burger.setAttribute('setevent', 'true');
   navbar_burger.addEventListener('click', () => {
     navbar_burger.classList.toggle('is-active');
     navbar_menu.classList.toggle('is-active');
@@ -27,4 +30,5 @@ const main = () => {
   });
 };
 
+document.addEventListener('DOMContentLoaded', main);
 document.addEventListener('turbolinks:load', main);
