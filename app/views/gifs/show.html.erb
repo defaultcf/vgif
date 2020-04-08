@@ -16,29 +16,31 @@
   </div>
 </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= title @gif.title %>
-</p>
+<div class="padding-20">
+  <p>
+    <strong>Title:</strong>
+    <%= title @gif.title %>
+  </p>
 
-<p>
-  <strong>Source:</strong>
-  <%= @gif.source_url %>
-</p>
+  <p>
+    <strong>Source:</strong>
+    <%= @gif.source_url %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @gif.user_id %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @gif.user_id %>
+  </p>
 
-<p>
-  <strong>Tags:</strong>
-  <% @gif.tag_list.map do |tag| %>
-    <%= link_to tag_path(tag) do %>
-      <span class="tag is-link"><%= tag %></span>
+  <p>
+    <strong>Tags:</strong>
+    <% @gif.tag_list.map do |tag| %>
+      <%= link_to tag_path(tag) do %>
+        <span class="tag is-link"><%= tag %></span>
+      <% end %>
     <% end %>
-  <% end %>
-</p>
+  </p>
 
-<%= link_to 'Edit', edit_gif_path(@gif) %> |
-<%= link_to 'Back', gifs_path %>
+  <%= link_to 'Edit', edit_gif_path(@gif) %> |
+  <%= link_to 'Back', gifs_path %>
+</div>
