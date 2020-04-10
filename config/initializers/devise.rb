@@ -267,6 +267,8 @@ Devise.setup do |config|
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
   #
+  # https://github.com/heartcombo/devise/wiki/How-To:-Redirect-to-a-specific-page-when-the-user-can-not-be-authenticated
+  #
   #config.warden do |manager|
   #  #manager.intercept_401 = false
   #  #manager.default_strategies(scope: :user).unshift :some_external_strategy

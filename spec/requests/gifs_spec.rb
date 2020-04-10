@@ -22,7 +22,7 @@ RSpec.describe "/gifs", type: :request do
   describe "GET /new" do
     it 'when not login, redirect login page' do
       get new_gif_url
-      expect(response).to redirect_to(:user_twitter_omniauth_authorize)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "renders a successful response" do
@@ -36,7 +36,7 @@ RSpec.describe "/gifs", type: :request do
     it 'when not login, redirect login page' do
       gif = create(:gif, user: user)
       get edit_gif_url(gif)
-      expect(response).to redirect_to(:user_twitter_omniauth_authorize)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     it "render a successful response" do
@@ -79,7 +79,7 @@ RSpec.describe "/gifs", type: :request do
 
     it 'when not login, redirect login page' do
       post gifs_url, params: { gif: attributes }
-      expect(response).to redirect_to(:user_twitter_omniauth_authorize)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     context "with valid parameters" do
@@ -133,7 +133,7 @@ RSpec.describe "/gifs", type: :request do
     it 'when not login, redirect login page' do
       gif = create(:gif, user: user)
       patch gif_url(gif), params: { gif: { title: 'aaa' } }
-      expect(response).to redirect_to(:user_twitter_omniauth_authorize)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     context "with valid parameters" do
@@ -184,7 +184,7 @@ RSpec.describe "/gifs", type: :request do
     it 'when not login, redirect login page' do
       gif = create(:gif, user: user)
       delete gif_url(gif)
-      expect(response).to redirect_to(:user_twitter_omniauth_authorize)
+      expect(response).to redirect_to(new_user_session_path)
     end
 
     context 'when login' do
