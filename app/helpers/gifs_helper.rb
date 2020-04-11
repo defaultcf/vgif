@@ -8,4 +8,11 @@ module GifsHelper
       full_url_for(resource)
     end
   end
+
+  def error_message(obj, attr)
+    attr = attr.to_sym
+    if obj.errors[attr.to_sym]
+      tag.p obj.errors.full_messages_for(attr.to_sym).join('、'), class: 'help is-danger'
+    end
+  end
 end
