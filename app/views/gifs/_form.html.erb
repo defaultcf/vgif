@@ -3,21 +3,27 @@
 <%= form_with(model: gif, local: true) do |form| %>
   <% if gif.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(gif.errors.count, "error") %> prohibited this gif from being saved:</h2>
-
-      <ul>
-        <% gif.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+      <h2><%= I18n.t('errors.template.body') %>:</h2>
     </div>
   <% end %>
 
   <div class="columns">
     <div class="column is-two-fifths">
       <div class="field">
-        <%= form.label :image, class: 'label' %>
-        <%= form.file_field :image, accept: 'image/gif' %>
+        <div class="file">
+          <%= form.label :image, class: 'file-label' do %>
+            <%= form.file_field :image, class: 'file-input', accept: 'image/gif' %>
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                アップロードするGIFを選択
+              </span>
+            </span>
+          <% end %>
+          <%= error_message(gif, :image) %>
+        </div>
         <figure class="image">
           <%= image_tag gif.image.attached? ? gif.image : '', id: 'gif-preview' %>
         </figure>
@@ -28,12 +34,14 @@
       <div class="field">
         <%= form.label :title, class: 'label' %>
         <%= form.text_field :title, class: 'input', placeholder: '簡潔で分かりやすいタイトル' %>
+        <%= error_message(gif, :title) %>
       </div>
 
       <div class="field">
         <%= form.label :source_url, class: 'label' %>
         <%= form.url_field :source_url, class: 'input', placeholder: '例) https://youtu.be/JReuGEiCe1U?t=7721' %>
         <p class="help">切り抜き元のURLを入力してください。httpまたはhttpsから入力する必要があります。</p>
+        <%= error_message(gif, :source_url) %>
       </div>
 
       <div class="field">

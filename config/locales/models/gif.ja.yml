@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      gif: GIF
+    attributes:
+      gif:
+        image: GIFファイル
+        title: タイトル
+        source_url: 切り抜き元URL
+        user: 投稿者
+        tag_list: タグ

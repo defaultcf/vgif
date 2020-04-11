@@ -1,4 +1,9 @@
 // *= require @yaireo/tagify/dist/tagify.css
+@import 'bulma/bulma.sass';
+
+.field_with_errors input {
+  @extend .is-danger;
+}
 
 .tile.is-parent {
   flex-wrap: wrap;
