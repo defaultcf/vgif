@@ -24,7 +24,7 @@
 
   <p>
     <strong><%= Gif.human_attribute_name('source_url') %>:</strong>
-    <%= @gif.source_url %>
+    <%= link_to @gif.source_url, @gif.source_url, rel: 'ugc' %>
   </p>
 
   <p>

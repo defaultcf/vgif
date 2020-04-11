@@ -22,8 +22,13 @@
               </span>
             </span>
           <% end %>
-          <%= error_message(gif, :image) %>
         </div>
+        <div>
+          <p>or...</p>
+          <%= form.label :remote_image_url, class: 'label' %>
+          <%= form.text_field :remote_image_url, class: 'input', placeholder: 'GIFのURLからインポートします' %>
+        </div>
+        <%= error_message(gif, :image) %>
         <figure class="image">
           <%= image_tag gif.image.attached? ? gif.image : '', id: 'gif-preview' %>
         </figure>

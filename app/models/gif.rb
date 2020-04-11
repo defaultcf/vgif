@@ -1,4 +1,6 @@
 class Gif < ApplicationRecord
+  include RemoteImage
+
   belongs_to :user
   has_one_attached :image
   acts_as_taggable

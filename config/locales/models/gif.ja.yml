@@ -5,6 +5,7 @@ ja:
     attributes:
       gif:
         image: GIFファイル
+        remote_image_url: 外部から取り込み
         title: タイトル
         source_url: 切り抜き元URL
         user: 投稿者
