@@ -5,6 +5,7 @@ ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.1'
+gem 'rails-i18n', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -30,9 +31,9 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Pages
 gem 'high_voltage', '~> 3.1'
-
 # Authentication
 gem 'devise'
+gem 'devise-i18n'
 gem 'omniauth-twitter'
 # ActiveStorage
 gem 'aws-sdk-s3', require: false

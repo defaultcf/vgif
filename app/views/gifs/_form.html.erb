@@ -3,7 +3,7 @@
 <%= form_with(model: gif, local: true) do |form| %>
   <% if gif.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(gif.errors.count, "error") %> prohibited this gif from being saved:</h2>
+      <h2><%= I18n.t('errors.template.header.other', model: 'GIF', count: gif.errors.count) %>:</h2>
 
       <ul>
         <% gif.errors.full_messages.each do |message| %>
