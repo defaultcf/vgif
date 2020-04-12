@@ -39,6 +39,7 @@
             </div>
           <% else %>
             <%= link_to 'Twitterアカウントでログイン', :user_twitter_omniauth_authorize, class: 'navbar-item' %>
+            <%= link_to 'developerでログイン', :user_developer_omniauth_authorize, class: 'navbar-item' unless Rails.env.production? %>
           <% end %>
         </div>
       </div>

@@ -1,4 +1,6 @@
 class Gif < ApplicationRecord
+  include RemoteImage
+
   belongs_to :user
   has_one_attached :image
   acts_as_taggable
@@ -8,8 +10,11 @@ class Gif < ApplicationRecord
   validates :image,
     attached: true,
     content_type: 'image/gif',
-    size: { less_than: 20.megabytes },
-    dimension: { width: { max: 1500 }, height: { max: 1500 } }
+    size: { less_than: Settings.gifs.upload.max_size },
+    dimension: {
+      width: { max: Settings.gifs.upload.max_width },
+      height: { max: Settings.gifs.upload.max_height },
+    }
   validate :custom_validator
 
   private
