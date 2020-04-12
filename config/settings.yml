@@ -1,0 +1,6 @@
+gifs:
+  upload:
+    max_size: <%= 20.megabytes %>
+    max_width: 1500
+    max_height: 1500
+    allow_hosts: ['j.gifs.com']

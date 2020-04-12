@@ -1,8 +1,6 @@
 module RemoteImage
   extend ActiveSupport::Concern
 
-  ALLOW_HOSTS = ['j.gifs.com']
-
   def remote_image_url=(url)
     return unless is_header_valid?(url)
 
@@ -16,7 +14,7 @@ module RemoteImage
 
     begin
       uri = URI.parse(url)
-      return false if ALLOW_HOSTS.none?(uri.host)
+      return false if Settings.gifs.upload.allow_hosts.none?(uri.host)
       http = Net::HTTP.new(uri.host)
       http.read_timeout = 5
       header = http.head(uri.path)
