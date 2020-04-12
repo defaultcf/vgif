@@ -97,6 +97,11 @@ RSpec.describe "/gifs", type: :request do
         post gifs_url, params: { gif: attributes }
         expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))
       end
+
+      it 'create with remote gif url' do
+        post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: 'https://j.gifs.com/OMz2yQ.gif') }
+        expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))
+      end
     end
 
     context "with invalid parameters" do
@@ -125,6 +130,16 @@ RSpec.describe "/gifs", type: :request do
       it "renders a successful response (i.e. to display the 'new' template)" do
         post gifs_url, params: { gif: attributes.merge(title: nil) }
         expect(response).to be_successful
+      end
+
+      it 'invalid remote image url' do
+        post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: '|ls') }
+        expect(response).to render_template('gifs/new')
+      end
+
+      it 'remote image url includes not allowed host' do
+        post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: 'https://media.giphy.com/media/VgZ9vXZuDZBYOwdzGu/giphy.gif') }
+        expect(response).to render_template('gifs/new')
       end
     end
   end
