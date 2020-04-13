@@ -4,7 +4,7 @@ module RemoteImage
   def remote_image_url=(url)
     return unless is_header_valid?(url)
 
-    image.attach(io: open(url), filename: 'from_other_site')
+    image.attach(io: open(url), filename: 'from_other_site.gif')
   end
 
   private
