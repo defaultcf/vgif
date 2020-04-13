@@ -15,6 +15,7 @@ let timer;
 remote_url_field.addEventListener('input', e => {
   window.clearTimeout(timer);
   timer = window.setTimeout(() => {
+    if (remote_url_field.value === '') return;
     preview.setAttribute('src', remote_url_field.value);
   }, 3000);
 });

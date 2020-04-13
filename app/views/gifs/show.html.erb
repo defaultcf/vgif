@@ -16,6 +16,15 @@
   </div>
 </div>
 
+<div class="field">
+  <a class="button is-info is-small" href="<%= tweet_url(@gif.title, gif_url) %>" target="_blank" rel="ugc noopenner noreferrer">
+    <span class="icon">
+      <i class="fab fa-twitter"></i>
+    </span>
+    <span>Tweet</span>
+  </a>
+</div>
+
 <div class="padding-20">
   <p>
     <strong><%= Gif.human_attribute_name('title') %>:</strong>
