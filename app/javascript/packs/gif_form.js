@@ -10,6 +10,14 @@ file_field.addEventListener('change', input => {
     reader.readAsDataURL(input.target.files[0]);
   }
 });
+const remote_url_field = document.querySelector('input[name="gif[remote_image_url]"]');
+let timer;
+remote_url_field.addEventListener('input', e => {
+  window.clearTimeout(timer);
+  timer = window.setTimeout(() => {
+    preview.setAttribute('src', remote_url_field.value);
+  }, 3000);
+});
 preview.addEventListener('click', () => {
   file_field.click();
 });
