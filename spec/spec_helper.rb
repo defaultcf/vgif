@@ -106,7 +106,14 @@ RSpec.configure do |config|
 
   config.before(:each, type: :system, js: true) do
     if ENV['GITHUB_ACTIONS']
-      driven_by :selenium, screen_size: [1280, 960]
+      driven_by :selenium, screen_size: [1280, 960], options: {
+        browser: :chrome,
+        desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome(
+          chromeOptions: {
+            args: %w(headless no-sandbox disable-gpu disable-dev-shm-usage),
+          },
+        ),
+      }
     else
       driven_by :selenium, using: :headless_chrome, screen_size: [1280, 960], options: {
         browser: :remote,
