@@ -20,6 +20,10 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+      chrome:
+        image: selenium/standalone-chrome-debug:3.141.59
+        ports:
+          - 4444:4444
 
     steps:
       - uses: actions/checkout@v2
