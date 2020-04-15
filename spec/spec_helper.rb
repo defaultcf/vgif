@@ -8,7 +8,7 @@ else
   capybara_host = 'rails'
 end
 
-Capybara.server = :puma, { Silent: true }
+Capybara.server = :puma
 Capybara.server_host = capybara_host
 Capybara.server_port = 3030
 
