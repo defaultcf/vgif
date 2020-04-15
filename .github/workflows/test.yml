@@ -66,3 +66,9 @@ jobs:
           bundle exec rails db:create db:schema:load
           bundle exec rails yarn:install webpacker:compile
           bundle exec rspec
+
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: screenshots
+          path: tmp/screenshots
