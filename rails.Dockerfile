@@ -1,4 +1,4 @@
-FROM ruby:2.6.5
+FROM ruby:2.6.6
 ENV LANG C.UTF-8
 RUN apt update -y && \
     apt install -y nodejs npm
