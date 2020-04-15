@@ -37,13 +37,13 @@ jobs:
       - name: bundle config
         run: |
           bundle config path vendor/bundle
-      - uses: actions/cache@v1
-        id: bundle_cache
-        with:
-          path: vendor/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
+      #- uses: actions/cache@v1
+      #  id: bundle_cache
+      #  with:
+      #    path: vendor/bundle
+      #    key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+      #    restore-keys: |
+      #      ${{ runner.os }}-gems-
       - name: bundle install
         run: |
           bundle install -j4 -r3 --path vendor/bundle
