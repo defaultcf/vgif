@@ -5,8 +5,13 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      RAILS_ENV: test
+    container:
+      image: ruby:2.6.6
+      options: --network-alias main
+      env:
+        RAILS_ENV: test
+        POSTGRES_HOST: postgres
+        CAPYBARA_HOST: main
 
     services:
       postgres:
@@ -18,36 +23,32 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          - 5432:5432
       chrome:
         image: selenium/standalone-chrome-debug:3.141.59
-        ports:
-          - 4444:4444
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '2.6.6'
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
 
       - name: bundle config
         run: |
           bundle config path vendor/bundle
-      #- uses: actions/cache@v1
-      #  id: bundle_cache
-      #  with:
-      #    path: vendor/bundle
-      #    key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-      #    restore-keys: |
-      #      ${{ runner.os }}-gems-
+      - uses: actions/cache@v1
+        id: bundle_cache
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
       - name: bundle install
         run: |
           bundle install -j4 -r3 --path vendor/bundle
 
+      - name: Install nodejs and yarn
+        run: |
+          apt update -y && apt install -y nodejs npm
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+          apt update -y && apt install -y yarn
       - name: Get yarn cache dir
         id: yarn_cache_dir
         run: echo "::set-output name=dir::$(yarn cache dir)"

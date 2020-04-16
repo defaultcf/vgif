@@ -1,12 +1,7 @@
 require 'capybara/rspec'
 
-if ENV['GITHUB_ACTIONS']
-  chrome_host = 'localhost'
-  capybara_host = 'localhost'
-else
-  chrome_host = 'chrome'
-  capybara_host = 'rails'
-end
+chrome_host = ENV.fetch("CHROME_HOST") { 'chrome' }
+capybara_host = ENV.fetch("CAPYBARA_HOST") { 'rails' }
 
 Capybara.server = :puma
 Capybara.server_host = capybara_host
