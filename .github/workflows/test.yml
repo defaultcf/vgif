@@ -24,7 +24,9 @@ jobs:
           --health-timeout 5s
           --health-retries 5
       chrome:
-        image: selenium/standalone-chrome-debug:3.141.59
+        image: selenium/standalone-chrome:3.141.59
+        volumes:
+          - ${{ github.workspace }}:/app
 
     steps:
       - uses: actions/checkout@v2
@@ -64,6 +66,7 @@ jobs:
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
+          mkdir -p tmp/screenshots
           bundle exec rails db:create db:schema:load
           bundle exec rails yarn:install webpacker:compile
           bundle exec rspec

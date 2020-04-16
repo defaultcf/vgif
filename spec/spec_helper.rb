@@ -3,7 +3,7 @@ require 'capybara/rspec'
 chrome_host = ENV.fetch("CHROME_HOST") { 'chrome' }
 capybara_host = ENV.fetch("CAPYBARA_HOST") { 'rails' }
 
-Capybara.server = :puma
+Capybara.server = :puma, { Silent: true }
 Capybara.server_host = capybara_host
 Capybara.server_port = 3030
 
