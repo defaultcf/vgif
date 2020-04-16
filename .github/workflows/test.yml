@@ -5,8 +5,13 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      RAILS_ENV: test
+    container:
+      image: ruby:2.6.6
+      options: --network-alias main
+      env:
+        RAILS_ENV: test
+        POSTGRES_HOST: postgres
+        CAPYBARA_HOST: main
 
     services:
       postgres:
@@ -18,17 +23,11 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
-        ports:
-          - 5432:5432
+      chrome:
+        image: selenium/standalone-chrome:3.141.59
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: '2.6.5'
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
 
       - name: bundle config
         run: |
@@ -44,6 +43,12 @@ jobs:
         run: |
           bundle install -j4 -r3 --path vendor/bundle
 
+      - name: Install nodejs and yarn
+        run: |
+          apt update -y && apt install -y nodejs npm
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+          apt update -y && apt install -y yarn
       - name: Get yarn cache dir
         id: yarn_cache_dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -59,6 +64,13 @@ jobs:
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: |
+          mkdir -p tmp/screenshots
           bundle exec rails db:create db:schema:load
           bundle exec rails yarn:install webpacker:compile
           bundle exec rspec
+
+      - uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: screenshots
+          path: tmp/screenshots
