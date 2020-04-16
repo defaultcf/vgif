@@ -10,7 +10,7 @@ RSpec.describe "Gifs", type: :system, js: true do
     end
 
     it 'create gif' do
-      attach_file('gif[image]', '/app/spec/factories/images/lulu_wink.gif', visible: :all)
+      attach_file('gif[image]', Rails.root.join('spec/factories/images/lulu_wink.gif'), visible: :all)
       fill_in('gif[title]', with: 'るるのウィンク')
       fill_in('gif[source_url]', with: 'https://youtu.be/JReuGEiCe1U?t=7721')
 
