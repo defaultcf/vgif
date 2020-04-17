@@ -5,13 +5,14 @@ module PagesHelper
 
   def thumbnail_image(resource)
     # convert input.gif -coalesce -scale 50% -deconstruct +dither -layers Optimize output.gif
-    resource.variant(loader: { page: nil }, combine_options: [
-      #[:resize, "600x315^"], # FIXME: 何故か縦横を小さくしたはずなのにファイルサイズが大きくなる
-      [:scale, '50%'],
-      [:coalesce, true],
-      [:deconstruct, true],
-      [:dither, true], [:+, true],
-      [:layers, "Optimize"],
-    ]).processed
+    resource.variant(
+      loader: { page: nil },
+      #resize: "600x315^", # FIXME: 何故か縦横を小さくしたはずなのにファイルサイズが大きくなる
+      scale: '50%',
+      coalesce: true,
+      deconstruct: true,
+      dither: true, '+': true,
+      layers: "Optimize",
+    ).processed
   end
 end
