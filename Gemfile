@@ -48,6 +48,8 @@ gem 'meta-tags'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'bullet'
+  # For test
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'capybara'
