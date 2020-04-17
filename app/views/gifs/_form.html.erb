@@ -26,8 +26,8 @@
         <div>
           <p>or...</p>
           <%= form.label :remote_image_url, class: 'label' %>
-          <%= form.text_field :remote_image_url, class: 'input', placeholder: 'GIFのURLからインポートします' %>
-          <p class="help">現在、gifs.comからのみ取り込めます。</p>
+          <%= form.text_field :remote_image_url, class: 'input', placeholder: '例) https://j.gifs.com/OMz2yQ.gif' %>
+          <p class="help">現在、gifs.comのDirect Linkからのみ取り込めます。</p>
         </div>
         <%= error_message(gif, :image) %>
         <figure class="image">
@@ -45,8 +45,8 @@
 
       <div class="field">
         <%= form.label :source_url, class: 'label' %>
-        <%= form.url_field :source_url, class: 'input', placeholder: '例) https://youtu.be/JReuGEiCe1U?t=7721' %>
-        <p class="help">切り抜き元のURLを入力してください。httpまたはhttpsから入力する必要があります。</p>
+        <%= form.url_field :source_url, class: 'input', placeholder: '例) https://youtu.be/ao4QU9HTAt8?t=6113' %>
+        <p class="help">httpまたはhttpsから入力する必要があります。</p>
         <%= error_message(gif, :source_url) %>
       </div>
 

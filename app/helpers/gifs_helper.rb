@@ -15,4 +15,8 @@ module GifsHelper
       tag.p obj.errors.full_messages_for(attr.to_sym).join('、'), class: 'help is-danger'
     end
   end
+
+  def tweet_url(text, url = '')
+    "https://twitter.com/intent/tweet?#{URI.encode_www_form(text: text, url: url)}"
+  end
 end
