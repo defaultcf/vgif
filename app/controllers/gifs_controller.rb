@@ -6,7 +6,7 @@ class GifsController < ApplicationController
   # GET /gifs
   # GET /gifs.json
   def index
-    @gifs = Gif.all
+    @gifs = Gif.all.with_attached_image
   end
 
   # GET /gifs/1

@@ -4,6 +4,6 @@ class TagsController < ApplicationController
   end
 
   def show
-    @gifs = Gif.tagged_with(params[:tag_name])
+    @gifs = Gif.tagged_with(params[:tag_name]).with_attached_image
   end
 end
