@@ -23,6 +23,6 @@
 </div>
 
 <div class="content">
-  <p class="title is-4">このユーザが投稿したGIF</p>
+  <p class="title is-4">投稿したGIF</p>
   <%= render partial: 'gifs/gifgrid', locals: { gifs: @user.gifs.with_attached_image } %>
 </div>
