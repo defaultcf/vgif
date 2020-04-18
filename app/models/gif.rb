@@ -17,6 +17,16 @@ class Gif < ApplicationRecord
     }
   validate :custom_validator
 
+  def tag_list=(tag_json)
+    begin
+      arr = JSON.parse(tag_json).pluck('value')
+    rescue
+      arr = []
+    end
+
+    super(arr)
+  end
+
   private
 
   def custom_validator

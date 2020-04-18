@@ -93,6 +93,12 @@ RSpec.describe "/gifs", type: :request do
         }.to change(Gif, :count).by(1)
       end
 
+      it 'creates GIF with tags' do
+        expect {
+          post gifs_url, params: { gif: attributes.merge(tag_list: [{ value: '鈴原るる' }].to_json) }
+        }.to change(ActsAsTaggableOn::Tag, :count).by(1)
+      end
+
       it "redirects to the created gif" do
         post gifs_url, params: { gif: attributes }
         expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))

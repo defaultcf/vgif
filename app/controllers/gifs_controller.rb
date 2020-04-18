@@ -71,12 +71,7 @@ class GifsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gif_params
-      params.require(:gif).permit(:image, :remote_image_url, :title, :source_url, :public).merge(user: current_user, tag_list: tag_array)
-    end
-
-    def tag_array
-      tag_list = params[:gif][:tag_list]
-      tag_list.blank? ? nil : JSON.parse(tag_list).pluck("value")
+      params.require(:gif).permit(:image, :remote_image_url, :title, :source_url, :tag_list).merge(user: current_user)
     end
 
     def can_edit?

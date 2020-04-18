@@ -5,7 +5,7 @@ RSpec.describe "gifs/show", type: :view do
     @gif = assign(:gif, create(:gif, {
       title: 'すいちゃんは今日も可愛い',
       source_url: 'https://youtube.com',
-      tag_list: '星街すいせい, 可愛い'
+      tag_list: [{value: '星街すいせい'}, {value: '可愛い'}].to_json
     }))
   end
 
