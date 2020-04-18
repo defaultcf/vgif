@@ -1,3 +1,5 @@
+import Tagify from '@yaireo/tagify'
+
 const main = () => {
   // Navbar burger
   const navbar_burger = document.querySelector('.navbar-burger')
@@ -28,6 +30,24 @@ const main = () => {
       button.setAttribute('data-tooltip', button.getAttribute('data-tooltip-tmp'));
     });
   });
+
+  // Tagify
+  const tagify_field = document.querySelector('input.tagify');
+  if (tagify_field) {
+    new Tagify(tagify_field);
+  }
+
+  // Submit
+  const form = document.querySelector('form');
+  const submit_button = document.querySelector('#submit_button');
+  if (form && submit_button) {
+    submit_button.removeAttribute('disabled');
+    submit_button.addEventListener('click', e => {
+      submit_button.setAttribute('disabled', '');
+      submit_button.textContent = 'Wait...';
+      form.submit();
+    });
+  }
 };
 
 document.addEventListener('DOMContentLoaded', main);

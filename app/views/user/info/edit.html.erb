@@ -1,0 +1,20 @@
+<%= form_with(scope: :user, url: user_edit_path) do |form| %>
+  <div class="field">
+    <%= form.label :username, class: 'label' %>
+    <%= form.text_field :username, class: 'input'  %>
+  </div>
+
+  <div class="field">
+    <%= form.label :displayname, class: 'label' %>
+    <%= form.text_field :displayname, class: 'input' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tag_list, class: 'label' %>
+    <%= form.text_field :tag_list, class: 'tagify' %>
+  </div>
+
+  <div class="actions">
+    <%= form.button type: 'button', id: 'submit_button', class: 'button is-primary' %>
+  </div>
+<% end %>

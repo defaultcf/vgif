@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'user/omniauth_callbacks' }
+  get '@:username', to: 'user/info#show', as: 'user'
   namespace :user do
-    get ':username', to: 'info#show'
+    get 'edit', to: 'info#edit'
+    patch '/', to: 'info#update'
   end
 
   resources :gifs
