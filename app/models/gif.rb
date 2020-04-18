@@ -27,6 +27,10 @@ class Gif < ApplicationRecord
     super(arr)
   end
 
+  def editable?(check_user)
+    user == check_user
+  end
+
   private
 
   def custom_validator

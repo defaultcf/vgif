@@ -3,6 +3,17 @@
 
 <%= image_tag @gif.image %>
 
+<p class="title is-3">
+  <%= title @gif.title %>
+  <% if @gif.editable?(current_user) %>
+    <%= link_to edit_gif_path(@gif) do %>
+      <span class="icon">
+        <i class="fas fa-edit"></i>
+      </span>
+    <% end %>
+  <% end %>
+</p>
+
 <div class="field has-addons copy-button">
   <div class="control has-icons-right">
     <%= url_field_tag 'public_url', full_url_for(@gif.image), class: 'input', readonly: true %>
@@ -25,31 +36,26 @@
   </a>
 </div>
 
-<div class="padding-20">
+<div class="padding-20 content">
   <p>
-    <strong><%= Gif.human_attribute_name('title') %>:</strong>
-    <%= title @gif.title %>
-  </p>
-
-  <p>
-    <strong><%= Gif.human_attribute_name('source_url') %>:</strong>
+    <span class="icon">
+      <i class="fas fa-share-square"></i>
+    </span>
     <%= link_to @gif.source_url, @gif.source_url, target: '_blank', rel: 'ugc noopener noreferrer' %>
   </p>
 
   <p>
-    <strong><%= Gif.human_attribute_name('user') %>:</strong>
+    <span class="icon">
+      <i class="fas fa-user"></i>
+    </span>
     <%= link_to @gif.user.displayname, @gif.user %>
   </p>
 
   <p>
-    <strong><%= Gif.human_attribute_name('tag_list') %>:</strong>
     <% @gif.tag_list.map do |tag| %>
       <%= link_to tag_path(tag) do %>
-        <span class="tag is-link"><%= tag %></span>
+        <span class="tag is-link">#<%= tag %></span>
       <% end %>
     <% end %>
   </p>
-
-  <%= link_to 'Edit', edit_gif_path(@gif) %> |
-  <%= link_to 'Back', gifs_path %>
 </div>
