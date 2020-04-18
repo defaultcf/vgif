@@ -10,6 +10,6 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe Users::InfoHelper, type: :helper do
+RSpec.describe User::InfoHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
