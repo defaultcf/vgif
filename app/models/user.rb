@@ -19,4 +19,8 @@ class User < ApplicationRecord
       user.displayname = auth.info.name
     end
   end
+
+  def to_param
+    username
+  end
 end
