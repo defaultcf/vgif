@@ -1,10 +1,16 @@
 <div class="tile is-ancestor gifgrid">
   <div class="tile is-parent">
-    <% gifs.each do |gif| %>
-      <%= link_to gif, class: 'tile is-3' do %>
-        <figure class="image">
-          <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(thumbnail_image(gif.image)) %>
-        </figure>
+    <% if gifs.empty? %>
+      <div class="notification">
+        <p>なんもないで</p>
+      </div>
+    <% else %>
+      <% gifs.each do |gif| %>
+        <%= link_to gif, class: 'tile is-3' do %>
+          <figure class="image">
+            <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(thumbnail_image(gif.image)) %>
+          </figure>
+        <% end %>
       <% end %>
     <% end %>
   </div>
