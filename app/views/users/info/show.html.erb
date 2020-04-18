@@ -1,0 +1,5 @@
+<h3 class="title is-3"><%= @user.displayname %></h3>
+<p class="help">@<%= @user.username %></p>
+
+<h4 class="title is-4">このユーザが投稿したGIF</h4>
+<%= render partial: 'gifs/gifgrid', locals: { gifs: @user.gifs.with_attached_image } %>

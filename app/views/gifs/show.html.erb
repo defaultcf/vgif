@@ -38,7 +38,7 @@
 
   <p>
     <strong><%= Gif.human_attribute_name('user') %>:</strong>
-    <%= @gif.user_id %>
+    <%= link_to @gif.user.displayname, users_path(@gif.user) %>
   </p>
 
   <p>
