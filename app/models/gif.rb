@@ -1,9 +1,10 @@
 class Gif < ApplicationRecord
-  include RemoteImage
-
   belongs_to :user
   has_one_attached :image
   acts_as_taggable
+
+  include RemoteImage
+  include TagList
 
   validates :title, presence: true
   validates :source_url, format: /\A#{URI::regexp(%w(http https))}\z/
@@ -16,16 +17,6 @@ class Gif < ApplicationRecord
       height: { max: Settings.gifs.upload.max_height },
     }
   validate :custom_validator
-
-  def tag_list=(tag_json)
-    begin
-      arr = JSON.parse(tag_json).pluck('value')
-    rescue
-      arr = []
-    end
-
-    super(arr)
-  end
 
   def editable?(check_user)
     user == check_user

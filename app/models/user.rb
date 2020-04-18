@@ -7,7 +7,10 @@ class User < ApplicationRecord
   has_many :gifs, dependent: :destroy
   acts_as_taggable
 
-  validates :username, uniqueness: true
+  include TagList
+
+  validates :username, presence: true, uniqueness: true, length: { in: 4..15 }, format: { with: /\A[a-z0-9\-_]*\z/ }
+  validates :displayname, presence: true, length: { in: 1..30 }
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

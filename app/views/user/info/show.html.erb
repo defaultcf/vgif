@@ -7,5 +7,22 @@
   </div>
 </section>
 
-<p class="title is-4">このユーザが投稿したGIF</p>
-<%= render partial: 'gifs/gifgrid', locals: { gifs: @user.gifs.with_attached_image } %>
+<div class="buttons">
+  <%= link_to '編集する', user_edit_path, class: 'button is-primary' %>
+</div>
+
+<div class="content">
+  <p class="title is-4">好きなタグ</p>
+  <p>
+    <% @user.tag_list.map do |tag| %>
+      <%= link_to tag_path(tag) do %>
+        <span class="tag is-link">#<%= tag %></span>
+      <% end %>
+    <% end %>
+  </p>
+</div>
+
+<div class="content">
+  <p class="title is-4">このユーザが投稿したGIF</p>
+  <%= render partial: 'gifs/gifgrid', locals: { gifs: @user.gifs.with_attached_image } %>
+</div>

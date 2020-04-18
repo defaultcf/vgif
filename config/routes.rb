@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get '@:username', to: 'user/info#show', as: 'user'
   namespace :user do
     get 'edit', to: 'info#edit'
-    patch '/', to: 'info#update'
+    patch 'update', to: 'info#update'
   end
 
   resources :gifs

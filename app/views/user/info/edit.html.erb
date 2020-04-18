@@ -1,20 +1,38 @@
-<%= form_with(scope: :user, url: user_edit_path) do |form| %>
+<p class="title is-3">ユーザ設定</p>
+
+<%= form_with(model: current_user, url: user_update_path) do |form| %>
   <div class="field">
     <%= form.label :username, class: 'label' %>
     <%= form.text_field :username, class: 'input'  %>
+    <%= error_message(current_user, :username) %>
   </div>
 
   <div class="field">
     <%= form.label :displayname, class: 'label' %>
     <%= form.text_field :displayname, class: 'input' %>
+    <%= error_message(current_user, :displayname) %>
   </div>
 
   <div class="field">
     <%= form.label :tag_list, class: 'label' %>
-    <%= form.text_field :tag_list, class: 'tagify' %>
+    <%= form.text_field :tag_list, class: 'tagify', value: current_user.tag_list.map { |tag| {value: tag} }.to_json %>
   </div>
 
   <div class="actions">
     <%= form.button type: 'button', id: 'submit_button', class: 'button is-primary' %>
   </div>
 <% end %>
+
+<hr />
+
+<div class="message is-danger">
+  <div class="message-header">
+    <p>退会する場合</p>
+  </div>
+  <div class="message-body">
+    <p>下の「退会する」をクリックすることで、あなたのアカウント情報の全てを本サービスから削除します。</p>
+    <p>アカウント情報には、あなたがアップロードしたGIF全ても含まれ、退会を行うと直ちに削除が行われます。</p>
+    <p><strong>この操作は取り消せません。</strong></p>
+    <%= link_to '退会する', user_edit_path, class: 'button is-danger' %>
+  </div>
+</div>
