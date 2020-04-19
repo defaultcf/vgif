@@ -1,4 +1,4 @@
-class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   protect_from_forgery except: :developer
 
   def twitter
@@ -24,7 +24,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: 'Twitter') if is_navigational_format?
     else
       session['devise.twitter_data'] = request.env['omniauth.auth'].except('extra')
-      redirect_to new_user_registration_url
+      redirect_to new_user_session_url
     end
   end
 end

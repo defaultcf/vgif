@@ -1,3 +1,5 @@
+import Tagify from '@yaireo/tagify'
+
 const main = () => {
   // Navbar burger
   const navbar_burger = document.querySelector('.navbar-burger')
@@ -18,6 +20,18 @@ const main = () => {
     });
   });
 
+  // Modal
+  document.querySelectorAll('button.open-modal').forEach(open_button => {
+    const modal = open_button.nextElementSibling;
+    open_button.addEventListener('click', () => modal.classList.add('is-active'));
+  });
+  document.querySelectorAll('button.modal-close').forEach(close_button => {
+    const modal = close_button.parentNode;
+    const background = modal.querySelector('.modal-background');
+    close_button.addEventListener('click', () => modal.classList.remove('is-active'));
+    background.addEventListener('click', () => modal.classList.remove('is-active'));
+  });
+
   // Copy button
   document.querySelectorAll('.copy-button').forEach(area => {
     const input = area.querySelector('input');
@@ -28,6 +42,24 @@ const main = () => {
       button.setAttribute('data-tooltip', button.getAttribute('data-tooltip-tmp'));
     });
   });
+
+  // Tagify
+  const tagify_field = document.querySelector('input.tagify');
+  if (tagify_field) {
+    new Tagify(tagify_field);
+  }
+
+  // Submit
+  const form = document.querySelector('form');
+  const submit_button = document.querySelector('#submit_button');
+  if (form && submit_button) {
+    submit_button.removeAttribute('disabled');
+    submit_button.addEventListener('click', e => {
+      submit_button.setAttribute('disabled', '');
+      submit_button.textContent = 'Wait...';
+      form.submit();
+    });
+  }
 };
 
 document.addEventListener('DOMContentLoaded', main);

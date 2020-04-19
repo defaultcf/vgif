@@ -52,7 +52,7 @@
 
       <div class="field">
         <%= form.label :tag_list, class: 'label' %>
-        <%= form.text_field :tag_list, value: gif.tag_list.map { |tag| {value: tag} }.to_json %>
+        <%= form.text_field :tag_list, class: 'tagify', value: gif.tag_list.map { |tag| {value: tag} }.to_json %>
         <p class="help">YouTuber名、所属グループ名、かわいい、など書くと後から見つけやすくなります。Enterでタグを1つ確定します。</p>
       </div>
 
