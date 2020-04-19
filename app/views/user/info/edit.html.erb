@@ -4,6 +4,7 @@
   <div class="field">
     <%= form.label :username, class: 'label' %>
     <%= form.text_field :username, class: 'input'  %>
+    <p class="help">アルファベット小文字、数字、-（ハイフン）、_（マイナス）のみ使用できます。</p>
     <%= error_message(@user, :username) %>
   </div>
 
