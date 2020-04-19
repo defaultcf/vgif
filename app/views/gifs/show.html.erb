@@ -1,3 +1,5 @@
+<% description "vGIFにアップロードされたGIF、「#{@gif.title}」のページ - VTuberのGIFが集まる場所、vGIF" %>
+<% keywords @gif.tag_list.join(',') %>
 <% set_meta_tags og: { image: image_public_url(ogp_image(@gif.image)) } %>
 <% set_meta_tags twitter: { card: 'summary_large_image' } %>
 

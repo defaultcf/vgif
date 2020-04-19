@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザ
+    attributes:
+      user:
+        username: ユーザ名
+        displayname: 表示名
+        tag_list: 推しリスト

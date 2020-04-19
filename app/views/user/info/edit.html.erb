@@ -16,6 +16,7 @@
   <div class="field">
     <%= form.label :tag_list, class: 'label' %>
     <%= form.text_field :tag_list, class: 'tagify', value: current_user.tag_list.map { |tag| {value: tag} }.to_json %>
+    <p class="help">YouTuber名を書くと良いでしょう。Enterでタグを1つ確定します。</p>
   </div>
 
   <div class="actions">
