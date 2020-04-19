@@ -16,7 +16,7 @@
 </div>
 
 <div class="content">
-  <p class="title is-4">好きなタグ</p>
+  <p class="title is-4"><%= User.human_attribute_name('tag_list') %><p>
   <p>
     <% @user.tag_list.map do |tag| %>
       <%= link_to tag_path(tag) do %>

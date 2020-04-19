@@ -47,7 +47,20 @@ RSpec.describe "User::Infos", type: :request do
   end
 
   describe 'DELETE /user/delete' do
-    it 'delete user successful' do
+    it 'delete user successfuly' do
+      sign_in user
+      expect {
+        delete user_delete_url
+      }.to change(User, :count).by(-1)
+    end
+
+    it 'redirect successful' do
+      sign_in user
+      delete user_delete_url
+      expect(response).to redirect_to(root_path)
+    end
+
+    it 'delete user with GIFs' do
       sign_in user
       other_user = create(:user)
       create(:gif, user: user)

@@ -23,13 +23,20 @@ const main = () => {
   // Modal
   document.querySelectorAll('button.open-modal').forEach(open_button => {
     const modal = open_button.nextElementSibling;
-    open_button.addEventListener('click', () => modal.classList.add('is-active'));
+    open_button.addEventListener('click', () => {
+      modal.classList.add('is-active')
+      document.body.classList.add('is-clipped');
+    });
   });
   document.querySelectorAll('button.modal-close').forEach(close_button => {
     const modal = close_button.parentNode;
     const background = modal.querySelector('.modal-background');
-    close_button.addEventListener('click', () => modal.classList.remove('is-active'));
-    background.addEventListener('click', () => modal.classList.remove('is-active'));
+    const closeModal = () => {
+      modal.classList.remove('is-active');
+      document.body.classList.remove('is-clipped');
+    };
+    close_button.addEventListener('click', closeModal);
+    background.addEventListener('click', closeModal);
   });
 
   // Copy button
