@@ -13,5 +13,9 @@ RSpec.describe User::InfoController, type: :routing do
     it 'routes to #update' do
       expect(patch: '/user/update').to route_to('user/info#update')
     end
+
+    it 'routes to #delete' do
+      expect(delete: '/user/delete').to route_to('user/info#delete')
+    end
   end
 end

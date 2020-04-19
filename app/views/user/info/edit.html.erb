@@ -31,8 +31,20 @@
   </div>
   <div class="message-body">
     <p>下の「退会する」をクリックすることで、あなたのアカウント情報の全てを本サービスから削除します。</p>
-    <p>アカウント情報には、あなたがアップロードしたGIF全ても含まれ、退会を行うと直ちに削除が行われます。</p>
     <p><strong>この操作は取り消せません。</strong></p>
-    <%= link_to '退会する', user_edit_path, class: 'button is-danger' %>
+    <button class="button is-danger open-modal">退会する</button>
+
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <div class="box">
+          <p>アカウント情報には、あなたがアップロードしたGIF全ても含まれ、退会を行うと直ちに削除が行われます。</p>
+          <p><strong>この操作は取り消せません。</strong></p>
+          <%= link_to '本当に退会する', user_delete_path, method: :delete, class: 'button is-danger' %>
+        </div>
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+
   </div>
 </div>

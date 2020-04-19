@@ -21,6 +21,13 @@ class User::InfoController < ApplicationController
     end
   end
 
+  def delete
+    current_user.destroy
+
+    flash[:notice] = 'さみしいです...いつでも戻ってきてくださいね'
+    redirect_to root_path
+  end
+
   private
     def user_params
       params.require(:user).permit(:username, :displayname, :tag_list)

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :user do
     get 'edit', to: 'info#edit'
     patch 'update', to: 'info#update'
+    delete 'delete', to: 'info#delete'
   end
 
   resources :gifs

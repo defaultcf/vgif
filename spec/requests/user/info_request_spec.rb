@@ -45,4 +45,16 @@ RSpec.describe "User::Infos", type: :request do
       }.to change { user.displayname }.from(old_displayname).to(new_attributes[:displayname])
     end
   end
+
+  describe 'DELETE /user/delete' do
+    it 'delete user successful' do
+      sign_in user
+      other_user = create(:user)
+      create(:gif, user: user)
+      create(:gif, user: other_user)
+      expect {
+        delete user_delete_url
+      }.to change(Gif, :count).by(-1)
+    end
+  end
 end

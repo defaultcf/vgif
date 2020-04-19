@@ -20,6 +20,18 @@ const main = () => {
     });
   });
 
+  // Modal
+  document.querySelectorAll('button.open-modal').forEach(open_button => {
+    const modal = open_button.nextElementSibling;
+    open_button.addEventListener('click', () => modal.classList.add('is-active'));
+  });
+  document.querySelectorAll('button.modal-close').forEach(close_button => {
+    const modal = close_button.parentNode;
+    const background = modal.querySelector('.modal-background');
+    close_button.addEventListener('click', () => modal.classList.remove('is-active'));
+    background.addEventListener('click', () => modal.classList.remove('is-active'));
+  });
+
   // Copy button
   document.querySelectorAll('.copy-button').forEach(area => {
     const input = area.querySelector('input');

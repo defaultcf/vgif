@@ -8,7 +8,9 @@
 </section>
 
 <div class="buttons">
-  <%= link_to '編集する', user_edit_path, class: 'button is-primary' %>
+  <% if @user == current_user %>
+    <%= link_to '編集する', user_edit_path, class: 'button is-primary' %>
+  <% end %>
 </div>
 
 <div class="content">

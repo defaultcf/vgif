@@ -35,6 +35,8 @@
               <a class="navbar-link"><%= current_user.displayname %></a>
               <div class="navbar-dropdown is-right">
                 <%= link_to 'ユーザページ', current_user, class: 'navbar-item' %>
+                <%= link_to 'ユーザ設定', user_edit_path, class: 'navbar-item' %>
+                <hr class="dropdown-divider" />
                 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'navbar-item has-text-danger' %>
               </div>
             </div>
