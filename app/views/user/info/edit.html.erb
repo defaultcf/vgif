@@ -1,16 +1,16 @@
 <p class="title is-3">ユーザ設定</p>
 
-<%= form_with(model: current_user, url: user_update_path) do |form| %>
+<%= form_with(model: @user, url: user_update_path) do |form| %>
   <div class="field">
     <%= form.label :username, class: 'label' %>
     <%= form.text_field :username, class: 'input'  %>
-    <%= error_message(current_user, :username) %>
+    <%= error_message(@user, :username) %>
   </div>
 
   <div class="field">
     <%= form.label :displayname, class: 'label' %>
     <%= form.text_field :displayname, class: 'input' %>
-    <%= error_message(current_user, :displayname) %>
+    <%= error_message(@user, :displayname) %>
   </div>
 
   <div class="field">
