@@ -1,4 +1,7 @@
+require 'webmock/rspec'
 require 'capybara/rspec'
+
+WebMock.disable_net_connect! allow: ['chrome:4444', /(rails|main):3030/]
 
 chrome_host = ENV.fetch("CHROME_HOST") { 'chrome' }
 capybara_host = ENV.fetch("CAPYBARA_HOST") { 'rails' }

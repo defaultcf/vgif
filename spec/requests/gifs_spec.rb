@@ -105,6 +105,16 @@ RSpec.describe "/gifs", type: :request do
       end
 
       it 'create with remote gif url' do
+        stub_request(:any, 'https://j.gifs.com/OMz2yQ.gif')
+          .to_return(
+            headers: {
+              'Content-Type': 'image/gif',
+              'Content-Length': 1572864,
+            },
+            body: File.new(
+              Rails.root.join('spec/factories/images/lulu_wink.gif'),
+            ),
+          )
         post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: 'https://j.gifs.com/OMz2yQ.gif') }
         expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))
       end
