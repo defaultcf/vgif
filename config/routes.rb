@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     delete 'delete', to: 'info#delete'
   end
 
+  namespace :api do
+    get 'gifscom/get_meta'
+  end
+
   resources :gifs
   scope 'tags' do
     get '/', to: 'tags#index', as: :tags
