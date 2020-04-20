@@ -21,6 +21,17 @@ RSpec.describe "Gifs", type: :system, js: true do
         click_button '登録する'
       }.to change(Gif, :count).by(1)
     end
+
+    it 'suggest meta data with remote image url' do
+      stub_request(:get, 'https://gifs.com/gif/gZNDjZ')
+        .to_return(body: 'titleOfVideo = "武器を振り回す鈴原", yid = "29nfCCThT2k", start = "82.2", sample = "hogehoge"')
+      fill_in('gif[remote_image_url]', with: 'https://j.gifs.com/gZNDjZ.gif')
+      sleep(1.5)
+      suggest_title = find('#gif_title').value
+      suggest_source_url = find('#gif_source_url').value
+      expect(suggest_title).to eq '武器を振り回す鈴原'
+      expect(suggest_source_url).to eq 'https://youtu.be/29nfCCThT2k?t=82'
+    end
   end
 
   context 'delete GIF' do
