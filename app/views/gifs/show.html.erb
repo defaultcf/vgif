@@ -8,11 +8,31 @@
 <div class="content">
   <p class="title is-3 is-inline"><%= title @gif.title %></p>
   <% if @gif.editable?(current_user) %>
-    <%= link_to edit_gif_path(@gif), class: 'is-inline' do %>
-      <span class="icon">
-        <i class="fas fa-edit"></i>
-      </span>
-    <% end %>
+    <div class="buttons is-inline">
+      <%= link_to edit_gif_path(@gif), class: 'button' do %>
+        <span class="icon">
+          <i class="fas fa-edit"></i>
+        </span>
+      <% end %>
+      <button id="delete-button" class="button is-danger open-modal">
+        <span class="icon">
+          <i class="far fa-trash-alt"></i>
+        </span>
+      </button>
+
+      <div class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <div class="box">
+            <p>GIFの削除を行います。</p>
+            <p><strong>この操作は取り消せません。</strong></p>
+            <%= link_to '本当に削除する', gif_path(@gif), method: :delete, class: 'button is-danger' %>
+          </div>
+        </div>
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+
+    </div>
   <% end %>
 </div>
 

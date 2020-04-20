@@ -75,6 +75,6 @@ class GifsController < ApplicationController
     end
 
     def can_edit?
-      render 'errors/403', status: 403 if @gif.user != current_user
+      render 'errors/403', status: 403 unless @gif.editable?(current_user)
     end
 end
