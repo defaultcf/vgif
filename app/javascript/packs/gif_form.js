@@ -12,6 +12,7 @@ file_field.addEventListener('change', input => {
 });
 
 const remote_url_field = document.querySelector('input[name="gif[remote_image_url]"]');
+const title_field = document.querySelector('input[name="gif[title]"]');
 const source_url_field = document.querySelector('input[name="gif[source_url]"]');
 let timer;
 remote_url_field.addEventListener('input', e => {
@@ -22,8 +23,9 @@ remote_url_field.addEventListener('input', e => {
     preview.setAttribute('src', remote_url_field.value);
     const res = await fetch(`/api/gifscom/get_meta.json?gifs_id=${gifs_id[1]}`);
     const json = await res.json();
+    title_field.value = json.title;
     source_url_field.value = `https://youtu.be/${json.yid}?t=${Math.trunc(json.start)}`;
-  }, 3000);
+  }, 1500);
 });
 
 preview.addEventListener('click', () => {
