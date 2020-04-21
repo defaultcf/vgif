@@ -27,7 +27,7 @@
           <p>or...</p>
           <%= form.label :remote_image_url, class: 'label' %>
           <%= form.text_field :remote_image_url, class: 'input', placeholder: '例) https://j.gifs.com/OMz2yQ.gif' %>
-          <p class="help">現在、gifs.comのDirect Linkからのみ取り込めます。</p>
+          <p class="help">現在、gifs.comのDirect Linkからのみ取り込めます。自動でタイトル、切り抜き元URLも取り込みます！</p>
         </div>
         <%= error_message(gif, :image) %>
         <figure class="image">

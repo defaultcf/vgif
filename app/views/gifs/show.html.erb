@@ -5,7 +5,7 @@
 <% set_meta_tags og: { image: image_public_url(ogp_image(@gif.image)) } %>
 <% set_meta_tags twitter: { card: 'summary_large_image' } %>
 
-<%= image_tag @gif.image, id: 'gif' %>
+<%= image_tag @gif.image %>
 
 <div class="content">
   <p class="title is-3 is-inline"><%= title @gif.title %></p>
@@ -41,6 +41,7 @@
 <div class="field has-addons copy-button">
   <div class="control has-icons-right">
     <%= url_field_tag 'public_url', full_url_for(@gif.image), class: 'input', readonly: true %>
+    <%= hidden_field_tag 'direct_url', image_public_url(@gif.image) %>
   </div>
   <div class="control">
     <button class="button is-info has-tooltip-arrow" data-tooltip-tmp="Copied!">
