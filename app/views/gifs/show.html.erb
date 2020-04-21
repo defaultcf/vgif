@@ -1,9 +1,11 @@
+<%= javascript_pack_tag 'share', defer: true %>
+
 <% description "vGIFにアップロードされたGIF、「#{@gif.title}」のページ - VTuberのGIFが集まる場所、vGIF" %>
 <% keywords @gif.tag_list.join(',') %>
 <% set_meta_tags og: { image: image_public_url(ogp_image(@gif.image)) } %>
 <% set_meta_tags twitter: { card: 'summary_large_image' } %>
 
-<%= image_tag @gif.image %>
+<%= image_tag @gif.image, id: 'gif' %>
 
 <div class="content">
   <p class="title is-3 is-inline"><%= title @gif.title %></p>
@@ -50,12 +52,12 @@
 </div>
 
 <div class="field">
-  <a class="button is-info is-small" href="<%= tweet_url(@gif.title, gif_url(@gif)) %>" target="_blank" rel="ugc noopenner noreferrer">
+  <button id="share-button" class="button is-primary is-small">
     <span class="icon">
-      <i class="fab fa-twitter"></i>
+      <i class="fas fa-share-alt-square"></i>
     </span>
-    <span>Tweet</span>
-  </a>
+    <span>Share</span>
+  </button>
 </div>
 
 <div class="content">
