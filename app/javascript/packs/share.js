@@ -2,12 +2,17 @@ const main = async () => {
   const gif_dom = document.querySelector('#gif');
   if (!gif_dom) return;
 
+  const share_button = document.querySelector('#share-button');
+  if (!navigator.share) {
+    share_button.style.display = 'none';
+    return;
+  }
+
   const title = document.querySelector('.title').innerText;
   const res = await fetch(gif_dom.src);
   const blob = await res.blob();
   const file = new File([blob], 'file.gif', { type: 'image/gif' });
 
-  const share_button = document.querySelector('#share-button');
   share_button.addEventListener('click', () => {
     try {
       navigator.share({
