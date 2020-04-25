@@ -36,6 +36,6 @@ class User::InfoController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :displayname, :tag_list)
+      params.require(:user).permit(:displayname, :tag_list)
     end
 end

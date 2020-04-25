@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   include TagList
 
-  validates :username, presence: true, uniqueness: true, length: { in: 4..15 }, format: { with: /\A[a-z0-9\-_]*\z/ }
+  validates :username, presence: true, uniqueness: true
   validates :displayname, presence: true, length: { in: 1..30 }
 
   def self.from_omniauth(auth)

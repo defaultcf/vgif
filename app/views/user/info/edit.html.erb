@@ -2,13 +2,6 @@
 
 <%= form_with(model: @user, url: user_update_path) do |form| %>
   <div class="field">
-    <%= form.label :username, class: 'label' %>
-    <%= form.text_field :username, class: 'input'  %>
-    <p class="help">アルファベット小文字、数字、-（ハイフン）、_（マイナス）のみ使用できます。</p>
-    <%= error_message(@user, :username) %>
-  </div>
-
-  <div class="field">
     <%= form.label :displayname, class: 'label' %>
     <%= form.text_field :displayname, class: 'input' %>
     <%= error_message(@user, :displayname) %>

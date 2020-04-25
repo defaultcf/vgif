@@ -44,6 +44,14 @@ RSpec.describe "User::Infos", type: :request do
         user.reload
       }.to change { user.displayname }.from(old_displayname).to(new_attributes[:displayname])
     end
+
+    it 'can not update username' do
+      sign_in user
+      expect {
+        patch user_update_url, params: { user: { username: 'New Username' } }
+        user.reload
+      }.not_to change { user.username }
+    end
   end
 
   describe 'DELETE /user/delete' do
