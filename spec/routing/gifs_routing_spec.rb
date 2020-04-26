@@ -14,6 +14,10 @@ RSpec.describe GifsController, type: :routing do
       expect(get: "/gifs/1").to route_to("gifs#show", id: "1")
     end
 
+    it "routes to #show format gif" do
+      expect(get: "/gifs/1.gif").to route_to("gifs#show", id: "1", format: 'gif')
+    end
+
     it "routes to #edit" do
       expect(get: "/gifs/1/edit").to route_to("gifs#edit", id: "1")
     end

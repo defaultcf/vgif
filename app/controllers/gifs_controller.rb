@@ -1,4 +1,6 @@
 class GifsController < ApplicationController
+  include GifsHelper
+
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_gif, only: [:show, :edit, :update, :destroy]
   before_action :can_edit?, only: [:edit, :update, :destroy]
@@ -12,6 +14,10 @@ class GifsController < ApplicationController
   # GET /gifs/1
   # GET /gifs/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.gif { redirect_to image_public_url(@gif.image) }
+    end
   end
 
   # GET /gifs/new

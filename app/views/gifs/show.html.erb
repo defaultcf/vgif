@@ -40,7 +40,7 @@
 
 <div class="field has-addons copy-button">
   <div class="control has-icons-right">
-    <%= url_field_tag 'public_url', full_url_for(@gif.image), class: 'input', readonly: true %>
+    <%= url_field_tag 'public_url', gif_url(@gif, format: :gif), class: 'input', readonly: true %>
     <%= hidden_field_tag 'direct_url', image_public_url(@gif.image) %>
   </div>
   <div class="control">
