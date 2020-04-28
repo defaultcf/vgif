@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :gif do
-    title { "MyString" }
-    source_url { "https://youtube.com" }
+    title { 'MyString' }
+    source_url { 'https://youtube.com' }
     user
+
     public { false }
 
     after(:build) do |source|

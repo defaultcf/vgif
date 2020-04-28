@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateGifs < ActiveRecord::Migration[6.0]
   def change
     create_table :gifs, id: :uuid do |t|

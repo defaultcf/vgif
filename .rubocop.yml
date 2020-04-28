@@ -1,1 +1,13 @@
 require: rubocop-rails
+
+# 日本語のコメントを許容する
+Style/AsciiComments:
+  Enabled: false
+
+# コメントは強要しない
+Style/Documentation:
+  Enabled: false
+
+# `Api::GifscomController` みたいな形を強要する
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact

@@ -1,25 +1,28 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "/gifs", type: :request do
+RSpec.describe '/gifs', type: :request do
   let(:user) { create(:user, email: 'test@example.com') }
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       create(:gif, user: user)
       get gifs_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
+  describe 'GET /show' do
     include GifsHelper
 
     before do
       @gif = create(:gif, user: user)
     end
 
-    it "renders a successful response" do
-      get gif_url(@gif)
+    it 'renders a successful response' do
+      gif = create(:gif, user: user)
+      get gif_url(gif)
       expect(response).to be_successful
     end
 
@@ -29,27 +32,27 @@ RSpec.describe "/gifs", type: :request do
     end
   end
 
-  describe "GET /new" do
+  describe 'GET /new' do
     it 'when not login, redirect login page' do
       get new_gif_url
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    it "renders a successful response" do
+    it 'renders a successful response' do
       sign_in user
       get new_gif_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
+  describe 'GET /edit' do
     it 'when not login, redirect login page' do
       gif = create(:gif, user: user)
       get edit_gif_url(gif)
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    it "render a successful response" do
+    it 'render a successful response' do
       sign_in user
       gif = create(:gif, user: user)
       get edit_gif_url(gif)
@@ -64,52 +67,51 @@ RSpec.describe "/gifs", type: :request do
     end
   end
 
-  describe "POST /create" do
-    let(:attributes) {
+  describe 'POST /create' do
+    let(:attributes) do
       attributes_for(:gif,
-        image: fixture_file_upload(
-          Rails.root.join('spec', 'factories', 'images', 'lulu_wink.gif'),
-          'image/gif',
-        ),
-      )
-    }
+                     image: fixture_file_upload(
+                       Rails.root.join('spec', 'factories', 'images', 'lulu_wink.gif'),
+                       'image/gif'
+                     ))
+    end
     # 一先ず20MBを上限とする
-    let(:largefile) {
+    let(:largefile) do
       fixture_file_upload(
         Rails.root.join('spec', 'factories', 'images', 'largefile_suichan.gif'),
-        'image/gif',
+        'image/gif'
       )
-    }
-    let(:jpegfile) {
+    end
+    let(:jpegfile) do
       fixture_file_upload(
         Rails.root.join('spec', 'factories', 'images', 'me.jpg'),
-        'image/jpeg',
+        'image/jpeg'
       )
-    }
+    end
 
     it 'when not login, redirect login page' do
       post gifs_url, params: { gif: attributes }
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    context "with valid parameters" do
+    context 'with valid parameters' do
       before do
         sign_in user
       end
 
-      it "creates a new Gif" do
-        expect {
+      it 'creates a new Gif' do
+        expect do
           post gifs_url, params: { gif: attributes }
-        }.to change(Gif, :count).by(1)
+        end.to change(Gif, :count).by(1)
       end
 
       it 'creates GIF with tags' do
-        expect {
+        expect do
           post gifs_url, params: { gif: attributes.merge(tag_list: [{ value: '鈴原るる' }].to_json) }
-        }.to change(ActsAsTaggableOn::Tag, :count).by(1)
+        end.to change(ActsAsTaggableOn::Tag, :count).by(1)
       end
 
-      it "redirects to the created gif" do
+      it 'redirects to the created gif' do
         post gifs_url, params: { gif: attributes }
         expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))
       end
@@ -119,38 +121,38 @@ RSpec.describe "/gifs", type: :request do
           .to_return(
             headers: {
               'Content-Type': 'image/gif',
-              'Content-Length': 1572864,
+              'Content-Length': 1_572_864
             },
             body: File.new(
-              Rails.root.join('spec/factories/images/lulu_wink.gif'),
-            ),
+              Rails.root.join('spec/factories/images/lulu_wink.gif')
+            )
           )
         post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: 'https://j.gifs.com/OMz2yQ.gif') }
         expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
       before do
         sign_in user
       end
 
-      it "does not create a new Gif" do
-        expect {
+      it 'does not create a new Gif' do
+        expect do
           post gifs_url, params: { gif: attributes.merge(title: '') }
-        }.to change(Gif, :count).by(0)
+        end.to change(Gif, :count).by(0)
       end
 
       it 'large file cant upload' do
-        expect {
+        expect do
           post gifs_url, params: { gif: attributes.merge(image: largefile) }
-        }.to change(Gif, :count).by(0)
+        end.to change(Gif, :count).by(0)
       end
 
       it 'jpeg file cant upload' do
-        expect {
+        expect do
           post gifs_url, params: { gif: attributes.merge(image: jpegfile) }
-        }.to change(Gif, :count).by(0)
+        end.to change(Gif, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
@@ -170,33 +172,33 @@ RSpec.describe "/gifs", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe 'PATCH /update' do
     it 'when not login, redirect login page' do
       gif = create(:gif, user: user)
       patch gif_url(gif), params: { gif: { title: 'aaa' } }
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    context "with valid parameters" do
-      let(:new_attributes) {
+    context 'with valid parameters' do
+      let(:new_attributes) do
         {
           title: 'this is new title'
         }
-      }
+      end
 
       before do
         sign_in user
       end
 
-      it "updates the requested gif" do
+      it 'updates the requested gif' do
         gif = create(:gif, user: user)
-        expect {
+        expect do
           patch gif_url(gif), params: { gif: new_attributes }
           gif.reload
-        }.to change { gif.title }.to(new_attributes[:title])
+        end.to change { gif.title }.to(new_attributes[:title])
       end
 
-      it "redirects to the gif" do
+      it 'redirects to the gif' do
         gif = create(:gif, user: user)
         patch gif_url(gif), params: { gif: new_attributes }
         gif.reload
@@ -204,7 +206,7 @@ RSpec.describe "/gifs", type: :request do
       end
     end
 
-    context "with invalid parameters" do
+    context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         sign_in user
         gif = create(:gif, user: user)
@@ -221,7 +223,7 @@ RSpec.describe "/gifs", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
+  describe 'DELETE /destroy' do
     it 'when not login, redirect login page' do
       gif = create(:gif, user: user)
       delete gif_url(gif)
@@ -233,14 +235,14 @@ RSpec.describe "/gifs", type: :request do
         sign_in user
       end
 
-      it "destroys the requested gif" do
+      it 'destroys the requested gif' do
         gif = create(:gif, user: user)
-        expect {
+        expect do
           delete gif_url(gif)
-        }.to change(Gif, :count).by(-1)
+        end.to change(Gif, :count).by(-1)
       end
 
-      it "redirects to the gifs list" do
+      it 'redirects to the gifs list' do
         gif = create(:gif, user: user)
         delete gif_url(gif)
         expect(response).to redirect_to(gifs_url)

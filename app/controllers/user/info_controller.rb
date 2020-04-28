@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User::InfoController < ApplicationController
   before_action :authenticate_user!, except: :show
   before_action :set_user, except: :show
@@ -6,8 +8,7 @@ class User::InfoController < ApplicationController
     @user = User.find_by!(username: params[:username])
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
@@ -30,12 +31,12 @@ class User::InfoController < ApplicationController
 
   private
 
-    def set_user
-      # current_userのままやると、form以外に影響を及ぼす為
-      @user = User.find(current_user.id)
-    end
+  def set_user
+    # current_userのままやると、form以外に影響を及ぼす為
+    @user = User.find(current_user.id)
+  end
 
-    def user_params
-      params.require(:user).permit(:displayname, :tag_list)
-    end
+  def user_params
+    params.require(:user).permit(:displayname, :tag_list)
+  end
 end

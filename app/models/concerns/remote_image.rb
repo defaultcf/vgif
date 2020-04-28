@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RemoteImage
   extend ActiveSupport::Concern
 
@@ -15,11 +17,12 @@ module RemoteImage
     begin
       uri = URI.parse(url)
       return false if Settings.gifs.upload.allow_hosts.none?(uri.host)
+
       http = Net::HTTP.new(uri.host, 443)
       http.use_ssl = true
       http.read_timeout = 5
       header = http.head(uri.path)
-    rescue
+    rescue StandardError
       return false
     end
 

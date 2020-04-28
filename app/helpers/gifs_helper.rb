@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module GifsHelper
   def image_public_url(resource)
     if Rails.env.production?

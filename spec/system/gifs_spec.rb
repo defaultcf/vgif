@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Gifs", type: :system, js: true do
+RSpec.describe 'Gifs', type: :system, js: true do
   let(:user) { create(:user, email: 'test@example.com') }
 
   context 'upload GIF' do
@@ -17,9 +19,9 @@ RSpec.describe "Gifs", type: :system, js: true do
       find('.tagify__input').native.send_keys('鈴原るる')
       find('.tagify__input').native.send_keys(:enter)
 
-      expect {
+      expect do
         click_button '登録する'
-      }.to change(Gif, :count).by(1)
+      end.to change(Gif, :count).by(1)
     end
 
     it 'suggest meta data with remote image url' do
@@ -43,9 +45,9 @@ RSpec.describe "Gifs", type: :system, js: true do
 
     it 'delete GIF successfully' do
       find('#delete-button').click
-      expect {
+      expect do
         click_link '本当に削除する'
-      }.to change(Gif, :count).by(-1)
+      end.to change(Gif, :count).by(-1)
     end
   end
 end
