@@ -12,10 +12,20 @@ RSpec.describe "/gifs", type: :request do
   end
 
   describe "GET /show" do
+    include GifsHelper
+
+    before do
+      @gif = create(:gif, user: user)
+    end
+
     it "renders a successful response" do
-      gif = create(:gif, user: user)
-      get gif_url(gif)
+      get gif_url(@gif)
       expect(response).to be_successful
+    end
+
+    it 'redirect to gif image' do
+      get gif_url(@gif, format: :gif)
+      expect(response).to redirect_to(image_public_url(@gif.image))
     end
   end
 

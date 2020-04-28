@@ -1,0 +1,16 @@
+<div class="padding-20">
+  <p class="help">
+    あなたの推しタグの付いたGIFが表示されます。
+    <%= link_to user_edit_path do %>推しタグはコチラで設定できます<% end %>。
+  </p>
+
+  <p>
+    <% @tags.each do |tag| %>
+      <%= link_to tag_path(tag_name: tag) do %>
+        <span class="tag is-link">#<%= tag %></span>
+      <% end %>
+    <% end %>
+  </p>
+</div>
+
+<%= render partial: 'gifs/gifgrid', locals: { gifs: @gifs } %>

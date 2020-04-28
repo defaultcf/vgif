@@ -28,6 +28,7 @@
         <div class="navbar-start">
           <%= link_to 'GIFs', gifs_path, class: 'navbar-item' %>
           <%= link_to 'Tags', tags_path, class: 'navbar-item' %>
+          <%= link_to 'Recommend', user_recommend_path, class: 'navbar-item' %>
         </div>
         <div class="navbar-end">
           <% if user_signed_in? %>
