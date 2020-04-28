@@ -8,6 +8,16 @@ RSpec.describe Gif, type: :model do
     expect(gif).to be_valid
   end
 
+  it 'order by created_at' do
+    gif1 = create(:gif)
+    travel 1.hour
+    gif2 = create(:gif)
+    travel 1.hour
+    gif3 = create(:gif)
+
+    expect(Gif.all.to_a).to eq [gif3, gif2, gif1]
+  end
+
   context 'invalid attributes' do
     it 'title' do
       gif.title = ''

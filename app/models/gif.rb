@@ -18,6 +18,8 @@ class Gif < ApplicationRecord
     }
   validate :custom_validator
 
+  default_scope -> { order(created_at: :desc) }
+
   def editable?(check_user)
     user == check_user
   end
