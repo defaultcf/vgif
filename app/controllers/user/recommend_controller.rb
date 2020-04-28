@@ -3,6 +3,6 @@ class User::RecommendController < ApplicationController
 
   def show
     @tags = current_user.tag_list
-    @gifs = Gif.tagged_with(@tags).with_attached_image
+    @gifs = Gif.tagged_with(@tags, any: true).with_attached_image
   end
 end
