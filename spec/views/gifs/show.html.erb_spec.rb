@@ -7,11 +7,11 @@ RSpec.describe 'gifs/show', type: :view do
     user = create(:user)
     allow(view).to receive(:current_user).and_return(user)
     @gif = assign(:gif, create(:gif, {
-                          title: 'すいちゃんは今日も可愛い',
-                          source_url: 'https://youtube.com',
-                          tag_list: [{ value: '星街すいせい' }, { value: '可愛い' }].to_json,
-                          user: user
-                        }))
+                                 title: 'すいちゃんは今日も可愛い',
+                                 source_url: 'https://youtube.com',
+                                 tag_list: [{ value: '星街すいせい' }, { value: '可愛い' }].to_json,
+                                 user: user
+                               }))
   end
 
   it 'renders attributes in <p>' do

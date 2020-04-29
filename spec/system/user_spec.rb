@@ -3,12 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'User', type: :system, js: true do
-  let(:user) {
+  let(:user) do
     user = create(:user,
-      username: 'asacoco',
-      displayname: 'old_displayname',
-    )
-  }
+                  username: 'asacoco',
+                  displayname: 'old_displayname')
+  end
 
   context 'modify info' do
     before do
