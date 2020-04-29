@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe 'gifs/index', type: :view do
   before(:each) do
     assign(:gifs, [
-             create(:gif),
-             create(:gif)
-           ])
+      create(:gif),
+      create(:gif),
+    ])
   end
 
   it 'renders a list of gifs' do

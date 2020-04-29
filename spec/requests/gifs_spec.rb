@@ -72,20 +72,20 @@ RSpec.describe '/gifs', type: :request do
       attributes_for(:gif,
                      image: fixture_file_upload(
                        Rails.root.join('spec', 'factories', 'images', 'lulu_wink.gif'),
-                       'image/gif'
+                       'image/gif',
                      ))
     end
     # 一先ず20MBを上限とする
     let(:largefile) do
       fixture_file_upload(
         Rails.root.join('spec', 'factories', 'images', 'largefile_suichan.gif'),
-        'image/gif'
+        'image/gif',
       )
     end
     let(:jpegfile) do
       fixture_file_upload(
         Rails.root.join('spec', 'factories', 'images', 'me.jpg'),
-        'image/jpeg'
+        'image/jpeg',
       )
     end
 
@@ -121,11 +121,11 @@ RSpec.describe '/gifs', type: :request do
           .to_return(
             headers: {
               'Content-Type': 'image/gif',
-              'Content-Length': 1_572_864
+              'Content-Length': 1_572_864,
             },
             body: File.new(
-              Rails.root.join('spec/factories/images/lulu_wink.gif')
-            )
+              Rails.root.join('spec/factories/images/lulu_wink.gif'),
+            ),
           )
         post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: 'https://j.gifs.com/OMz2yQ.gif') }
         expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))
@@ -182,7 +182,7 @@ RSpec.describe '/gifs', type: :request do
     context 'with valid parameters' do
       let(:new_attributes) do
         {
-          title: 'this is new title'
+          title: 'this is new title',
         }
       end
 

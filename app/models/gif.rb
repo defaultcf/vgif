@@ -16,7 +16,7 @@ class Gif < ApplicationRecord
             size: { less_than: Settings.gifs.upload.max_size },
             dimension: {
               width: { max: Settings.gifs.upload.max_width },
-              height: { max: Settings.gifs.upload.max_height }
+              height: { max: Settings.gifs.upload.max_height },
             }
   validate :custom_validator
 

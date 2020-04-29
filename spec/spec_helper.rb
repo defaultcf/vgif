@@ -114,7 +114,7 @@ RSpec.configure do |config|
     driven_by :selenium, using: :headless_chrome, screen_size: [1280, 960], options: {
       browser: :remote,
       url: "http://#{chrome_host}:4444/wd/hub",
-      desired_capabilities: :chrome
+      desired_capabilities: :chrome,
     }
     host! "http://#{capybara_host}:3030"
   end

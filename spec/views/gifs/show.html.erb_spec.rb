@@ -10,7 +10,7 @@ RSpec.describe 'gifs/show', type: :view do
       title: 'すいちゃんは今日も可愛い',
       source_url: 'https://youtube.com',
       tag_list: [{ value: '星街すいせい' }, { value: '可愛い' }].to_json,
-      user: user
+      user: user,
     }))
   end
 

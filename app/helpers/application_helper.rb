@@ -12,8 +12,8 @@ module ApplicationHelper
         type: 'website',
         url: request.original_url,
         title: :full_title,
-        description: :description
-      }
+        description: :description,
+      },
     }
   end
 end

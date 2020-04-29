@@ -9,9 +9,9 @@ RSpec.describe 'user/recommend/show.html.erb', type: :view do
 
     assign(:tags, %w[鈴原るる 角巻わため])
     assign(:gifs, [
-             create(:gif),
-             create(:gif)
-           ])
+      create(:gif),
+      create(:gif),
+    ])
   end
 
   it 'renders attributes' do

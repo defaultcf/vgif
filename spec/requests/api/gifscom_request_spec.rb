@@ -16,7 +16,7 @@ RSpec.describe 'Api::Gifscoms', type: :request do
       expect(response_json).to include(
         'title' => '武器を振り回す鈴原',
         'yid' => '29nfCCThT2k',
-        'start' => '82.2'
+        'start' => '82.2',
       )
     end
   end

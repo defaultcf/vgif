@@ -34,7 +34,7 @@ RSpec.describe 'User::Infos', type: :request do
   describe 'PATCH /user/update' do
     let(:new_attributes) do
       {
-        displayname: 'New Name'
+        displayname: 'New Name',
       }
     end
 

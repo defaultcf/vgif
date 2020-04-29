@@ -18,7 +18,7 @@ class Api::GifscomController < ApplicationController
     render json: {
       title: title ? title[1] : '',
       yid: yid ? yid[1] : '',
-      start: start ? start[1] : ''
+      start: start ? start[1] : '',
     }
   end
 end
