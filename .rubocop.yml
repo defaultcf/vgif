@@ -11,3 +11,6 @@ Style/Documentation:
 # `Api::GifscomController` みたいな形を強要する
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent

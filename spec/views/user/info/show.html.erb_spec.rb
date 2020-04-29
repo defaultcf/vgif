@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe 'user/info/show.html.erb', type: :view do
   before(:each) do
     user = assign(:user, create(:user, {
-                                  username: 'i544c',
-                                  displayname: 'Isaac'
-                                }))
+      username: 'i544c',
+      displayname: 'Isaac'
+    }))
     allow(view).to receive(:current_user).and_return(user)
   end
 
