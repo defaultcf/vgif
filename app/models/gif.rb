@@ -9,15 +9,16 @@ class Gif < ApplicationRecord
   include TagList
 
   validates :title, presence: true
-  validates :source_url, format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
+  validates :source_url,
+    format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
   validates :image,
-            attached: true,
-            content_type: 'image/gif',
-            size: { less_than: Settings.gifs.upload.max_size },
-            dimension: {
-              width: { max: Settings.gifs.upload.max_width },
-              height: { max: Settings.gifs.upload.max_height },
-            }
+    attached: true,
+    content_type: 'image/gif',
+    size: { less_than: Settings.gifs.upload.max_size },
+    dimension: {
+      width: { max: Settings.gifs.upload.max_width },
+      height: { max: Settings.gifs.upload.max_height },
+    }
   validate :custom_validator
 
   default_scope -> { order(created_at: :desc) }

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
-         :omniauthable, omniauth_providers: %i[twitter developer]
+    :omniauthable, omniauth_providers: %i[twitter developer]
 
   has_many :gifs, dependent: :destroy
   acts_as_taggable

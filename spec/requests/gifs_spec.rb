@@ -70,10 +70,10 @@ RSpec.describe '/gifs', type: :request do
   describe 'POST /create' do
     let(:attributes) do
       attributes_for(:gif,
-                     image: fixture_file_upload(
-                       Rails.root.join('spec', 'factories', 'images', 'lulu_wink.gif'),
-                       'image/gif',
-                     ))
+        image: fixture_file_upload(
+          Rails.root.join('spec', 'factories', 'images', 'lulu_wink.gif'),
+          'image/gif',
+        ))
     end
     # 一先ず20MBを上限とする
     let(:largefile) do

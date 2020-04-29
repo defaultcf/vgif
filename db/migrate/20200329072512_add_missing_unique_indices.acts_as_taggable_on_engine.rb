@@ -15,8 +15,8 @@ AddMissingUniqueIndices.class_eval do
     end
     remove_index ActsAsTaggableOn.taggings_table, name: 'taggings_taggable_context_idx'
     add_index ActsAsTaggableOn.taggings_table,
-              %i[tag_id taggable_id taggable_type context tagger_id tagger_type],
-              unique: true, name: 'taggings_idx'
+      %i[tag_id taggable_id taggable_type context tagger_id tagger_type],
+      unique: true, name: 'taggings_idx'
   end
 
   def self.down
