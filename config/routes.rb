@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    get 'gifscom/get_meta'
+    get 'gifscom/fetch_meta'
   end
 
   resources :gifs
