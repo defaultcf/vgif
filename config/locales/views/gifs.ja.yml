@@ -1,0 +1,8 @@
+ja:
+  gifs:
+    create:
+      success: 'アップロードが完了しました'
+    update:
+      success: '更新が完了しました'
+    destroy:
+      success: '削除が完了しました'

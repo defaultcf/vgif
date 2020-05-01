@@ -37,7 +37,7 @@ class GifsController < ApplicationController
 
     respond_to do |format|
       if @gif.save
-        format.html { redirect_to @gif, notice: 'Gif was successfully created.' }
+        format.html { redirect_to @gif, notice: t('.success') }
         format.json { render :show, status: :created, location: @gif }
       else
         format.html { render :new }
@@ -51,7 +51,7 @@ class GifsController < ApplicationController
   def update
     respond_to do |format|
       if @gif.update(gif_params)
-        format.html { redirect_to @gif, notice: 'Gif was successfully updated.' }
+        format.html { redirect_to @gif, notice: t('.success') }
         format.json { render :show, status: :ok, location: @gif }
       else
         format.html { render :edit }
@@ -65,7 +65,7 @@ class GifsController < ApplicationController
   def destroy
     @gif.destroy
     respond_to do |format|
-      format.html { redirect_to gifs_url, notice: 'Gif was successfully destroyed.' }
+      format.html { redirect_to gifs_url, notice: t('.success') }
       format.json { head :no_content }
     end
   end
@@ -79,7 +79,10 @@ class GifsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def gif_params
-    params.require(:gif).permit(:image, :remote_image_url, :title, :source_url, :tag_list).merge(user: current_user)
+    params
+      .require(:gif)
+      .permit(:image, :remote_image_url, :title, :source_url, :tag_list)
+      .merge(user: current_user)
   end
 
   def can_edit?
