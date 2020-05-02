@@ -48,6 +48,9 @@ gem 'acts-as-taggable-on', '~> 6.0'
 # OGP
 gem 'meta-tags'
 
+# Fix bugs
+gem 'sentry-raven'
+
 group :development, :test do
   gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
