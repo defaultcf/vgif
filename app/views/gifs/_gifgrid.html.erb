@@ -8,7 +8,7 @@
       <% gifs.each do |gif| %>
         <%= link_to gif, class: 'tile is-3' do %>
           <figure class="image">
-            <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(thumbnail_image(gif.image)) %>
+            <%= image_tag '', class: 'gif lazyload', 'data-src': url_for(thumbnail_image(gif.image)), alt: gif.title %>
           </figure>
         <% end %>
       <% end %>
