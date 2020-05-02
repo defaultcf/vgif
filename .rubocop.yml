@@ -29,3 +29,16 @@ Layout/FirstArrayElementIndentation:
 
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
+
+# Exclude config dir
+Layout/LineLength:
+  Exclude:
+    - 'config/**/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*.rb'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'config/**/*.rb'
