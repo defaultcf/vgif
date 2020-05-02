@@ -10,8 +10,4 @@ module GifsHelper
       full_url_for(resource)
     end
   end
-
-  def tweet_url(text, url = '')
-    "https://twitter.com/intent/tweet?#{URI.encode_www_form(text: text, url: url)}"
-  end
 end

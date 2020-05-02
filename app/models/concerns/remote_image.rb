@@ -4,28 +4,28 @@ module RemoteImage
   extend ActiveSupport::Concern
 
   def remote_image_url=(url)
-    return unless is_header_valid?(url)
+    header = get_header(url)
+    return unless header.present? && image_valid?(header)
 
-    image.attach(io: open(url), filename: 'from_other_site.gif')
+    image.attach(io: open(url), filename: 'from_other_site.gif') # rubocop:disable all
   end
 
   private
 
-  def is_header_valid?(url)
-    return false if url.empty?
+  def get_header(url)
+    uri = URI.parse(url)
+    return nil if Settings.gifs.upload.allow_hosts.none?(uri.host)
 
-    begin
-      uri = URI.parse(url)
-      return false if Settings.gifs.upload.allow_hosts.none?(uri.host)
+    http = Net::HTTP.new(uri.host, 443)
+    http.use_ssl = true
+    http.read_timeout = 5
+    http.head(uri.path)
+  rescue StandardError
+    nil
+  end
 
-      http = Net::HTTP.new(uri.host, 443)
-      http.use_ssl = true
-      http.read_timeout = 5
-      header = http.head(uri.path)
-    rescue StandardError
-      return false
-    end
-
-    header.content_type == 'image/gif' && header.content_length.to_i.bytes < 20.megabytes
+  def image_valid?(header)
+    header.content_type == 'image/gif' && \
+      header.content_length.to_i.bytes < 20.megabytes
   end
 end

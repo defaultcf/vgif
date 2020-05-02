@@ -14,6 +14,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :displayname, presence: true, length: { in: 1..30 }
 
+  # rubocop:disable Metrics/AbcSize
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.provider = auth.provider
@@ -24,6 +25,7 @@ class User < ApplicationRecord
       user.displayname = auth.info.name
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def to_param
     username
