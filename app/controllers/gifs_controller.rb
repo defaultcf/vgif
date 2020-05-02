@@ -2,6 +2,7 @@
 
 class GifsController < ApplicationController
   include GifsHelper
+  include PagesHelper
 
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_gif, only: %i[show edit update destroy]
@@ -19,6 +20,7 @@ class GifsController < ApplicationController
     respond_to do |format|
       format.html { render :show }
       format.gif { redirect_to image_public_url(@gif.image) }
+      format.thumb_gif { redirect_to thumbnail_image(@gif.image) }
     end
   end
 
