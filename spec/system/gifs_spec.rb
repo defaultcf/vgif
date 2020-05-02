@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Gifs", type: :system, js: true do
+RSpec.describe 'Gifs', type: :system, js: true do
   let(:user) { create(:user, email: 'test@example.com') }
 
   context 'upload GIF' do
@@ -10,21 +12,30 @@ RSpec.describe "Gifs", type: :system, js: true do
     end
 
     it 'create GIF successfully' do
-      attach_file('gif[image]', Rails.root.join('spec/factories/images/lulu_wink.gif'), visible: :all)
+      attach_file(
+        'gif[image]',
+        Rails.root.join('spec/factories/images/lulu_wink.gif'),
+        visible: :all,
+      )
       fill_in('gif[title]', with: 'るるのウィンク')
       fill_in('gif[source_url]', with: 'https://youtu.be/JReuGEiCe1U?t=7721')
 
       find('.tagify__input').native.send_keys('鈴原るる')
       find('.tagify__input').native.send_keys(:enter)
 
-      expect {
+      expect do
         click_button '登録する'
-      }.to change(Gif, :count).by(1)
+      end.to change(Gif, :count).by(1)
     end
 
     it 'suggest meta data with remote image url' do
       stub_request(:get, 'https://gifs.com/gif/gZNDjZ')
-        .to_return(body: 'titleOfVideo = "武器を振り回す鈴原", yid = "29nfCCThT2k", start = "82.2", sample = "hogehoge"')
+        .to_return(body: '
+          titleOfVideo = "武器を振り回す鈴原",
+          yid = "29nfCCThT2k",
+          start = "82.2",
+          sample = "hogehoge",
+        ')
       fill_in('gif[remote_image_url]', with: 'https://j.gifs.com/gZNDjZ.gif')
       sleep(1.5)
       suggest_title = find('#gif_title').value
@@ -43,9 +54,9 @@ RSpec.describe "Gifs", type: :system, js: true do
 
     it 'delete GIF successfully' do
       find('#delete-button').click
-      expect {
+      expect do
         click_link '本当に削除する'
-      }.to change(Gif, :count).by(-1)
+      end.to change(Gif, :count).by(-1)
     end
   end
 end

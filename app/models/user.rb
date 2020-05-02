@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable,
-         :omniauthable, omniauth_providers: %i[twitter developer]
+    :omniauthable, omniauth_providers: %i[twitter developer]
 
   has_many :gifs, dependent: :destroy
   acts_as_taggable
@@ -12,6 +14,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :displayname, presence: true, length: { in: 1..30 }
 
+  # rubocop:disable Metrics/AbcSize
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.provider = auth.provider
@@ -22,6 +25,7 @@ class User < ApplicationRecord
       user.displayname = auth.info.name
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def to_param
     username

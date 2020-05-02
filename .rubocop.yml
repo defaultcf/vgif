@@ -1,0 +1,85 @@
+require: rubocop-rails
+
+# 日本語のコメントを許容する
+Style/AsciiComments:
+  Enabled: false
+
+# コメントは強要しない
+Style/Documentation:
+  Enabled: false
+
+# `Api::GifscomController` みたいな形を強要する
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - 'config/**/*.rb'
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+# Exclude config dir
+Style/IfUnlessModifier:
+  Exclude:
+    - 'db/**/*.rb'
+
+Layout/LineLength:
+  Exclude:
+    - 'db/**/*.rb'
+    - 'config/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/**/*.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'db/**/*.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'db/**/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*.rb'
+    - 'spec/**/*.rb'

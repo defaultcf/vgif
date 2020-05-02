@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gif < ApplicationRecord
   belongs_to :user
   has_one_attached :image
@@ -7,7 +9,8 @@ class Gif < ApplicationRecord
   include TagList
 
   validates :title, presence: true
-  validates :source_url, format: /\A#{URI::regexp(%w(http https))}\z/
+  validates :source_url,
+    format: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/
   validates :image,
     attached: true,
     content_type: 'image/gif',

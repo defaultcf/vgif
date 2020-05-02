@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'user/omniauth_callbacks' }
   get '@:username', to: 'user/info#show', as: 'user'
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    get 'gifscom/get_meta'
+    get 'gifscom/fetch_meta'
   end
 
   resources :gifs

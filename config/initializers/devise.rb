@@ -269,11 +269,11 @@ Devise.setup do |config|
   #
   # https://github.com/heartcombo/devise/wiki/How-To:-Redirect-to-a-specific-page-when-the-user-can-not-be-authenticated
   #
-  #config.warden do |manager|
+  # config.warden do |manager|
   #  #manager.intercept_401 = false
   #  #manager.default_strategies(scope: :user).unshift :some_external_strategy
   #  manager.failure_app = Users::CustomFailureController
-  #end
+  # end
 
   # ==> Mountable engine configurations
   # When using Devise inside an engine, let's call it `MyEngine`, and this engine

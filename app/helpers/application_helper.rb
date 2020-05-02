@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
+  # rubocop:disable all
   def default_meta_tags
     {
       site: 'vGIF',

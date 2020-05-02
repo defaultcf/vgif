@@ -21,7 +21,7 @@ remote_url_field.addEventListener('input', e => {
     const gifs_id = remote_url_field.value.match(/\/([\w-_]+).gif$/);
     if (!gifs_id) return;
     preview.setAttribute('src', remote_url_field.value);
-    const res = await fetch(`/api/gifscom/get_meta.json?gifs_id=${gifs_id[1]}`);
+    const res = await fetch(`/api/gifscom/fetch_meta.json?gifs_id=${gifs_id[1]}`);
     const json = await res.json();
     title_field.value = json.title;
     source_url_field.value = `https://youtu.be/${json.yid}?t=${Math.trunc(json.start)}`;

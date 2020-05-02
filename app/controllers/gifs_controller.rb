@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class GifsController < ApplicationController
   include GifsHelper
 
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_gif, only: [:show, :edit, :update, :destroy]
-  before_action :can_edit?, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_gif, only: %i[show edit update destroy]
+  before_action :can_edit?, only: %i[edit update destroy]
 
   # GET /gifs
   # GET /gifs.json
@@ -26,8 +28,7 @@ class GifsController < ApplicationController
   end
 
   # GET /gifs/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /gifs
   # POST /gifs.json
@@ -36,7 +37,7 @@ class GifsController < ApplicationController
 
     respond_to do |format|
       if @gif.save
-        format.html { redirect_to @gif, notice: 'Gif was successfully created.' }
+        format.html { redirect_to @gif, notice: t('.success') }
         format.json { render :show, status: :created, location: @gif }
       else
         format.html { render :new }
@@ -50,7 +51,7 @@ class GifsController < ApplicationController
   def update
     respond_to do |format|
       if @gif.update(gif_params)
-        format.html { redirect_to @gif, notice: 'Gif was successfully updated.' }
+        format.html { redirect_to @gif, notice: t('.success') }
         format.json { render :show, status: :ok, location: @gif }
       else
         format.html { render :edit }
@@ -64,23 +65,27 @@ class GifsController < ApplicationController
   def destroy
     @gif.destroy
     respond_to do |format|
-      format.html { redirect_to gifs_url, notice: 'Gif was successfully destroyed.' }
+      format.html { redirect_to gifs_url, notice: t('.success') }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_gif
-      @gif = Gif.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def gif_params
-      params.require(:gif).permit(:image, :remote_image_url, :title, :source_url, :tag_list).merge(user: current_user)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_gif
+    @gif = Gif.find(params[:id])
+  end
 
-    def can_edit?
-      render 'errors/403', status: 403 unless @gif.editable?(current_user)
-    end
+  # Only allow a list of trusted parameters through.
+  def gif_params
+    params
+      .require(:gif)
+      .permit(:image, :remote_image_url, :title, :source_url, :tag_list)
+      .merge(user: current_user)
+  end
+
+  def can_edit?
+    render 'errors/403', status: :forbidden unless @gif.editable?(current_user)
+  end
 end

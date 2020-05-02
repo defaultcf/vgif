@@ -1,0 +1,13 @@
+name: Lint
+
+on: [pull_request]
+
+jobs:
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: reviewdog/action-rubocop@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          rubocop_version: 0.82.0
