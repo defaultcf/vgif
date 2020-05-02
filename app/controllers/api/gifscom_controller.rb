@@ -13,18 +13,18 @@ class Api::GifscomController < ApplicationController
 
   private
 
-    def get_json(uri)
-      res = Net::HTTP.get_response(uri)
-      body = res.body.encode('utf-8', 'utf-8') # UTF-8以外として認識されるため
+  def get_json(uri)
+    res = Net::HTTP.get_response(uri)
+    body = res.body.encode('utf-8', 'utf-8') # UTF-8以外として認識されるため
 
-      title = body.match(/titleOfVideo = "([^\"]*)"/)
-      yid = body.match(/yid = "([^\"]+)"/)
-      start = body.match(/start = "([^\"]+)"/)
+    title = body.match(/titleOfVideo = "([^\"]*)"/)
+    yid = body.match(/yid = "([^\"]+)"/)
+    start = body.match(/start = "([^\"]+)"/)
 
-      {
-        title: title ? title[1] : '',
-        yid: yid ? yid[1] : '',
-        start: start ? start[1] : '',
-      }
-    end
+    {
+      title: title ? title[1] : '',
+      yid: yid ? yid[1] : '',
+      start: start ? start[1] : '',
+    }
+  end
 end
