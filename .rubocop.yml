@@ -11,6 +11,8 @@ Style/Documentation:
 # `Api::GifscomController` みたいな形を強要する
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
+  Exclude:
+    - 'config/**/*.rb'
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
@@ -31,14 +33,32 @@ Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
 # Exclude config dir
+Style/IfUnlessModifier:
+  Exclude:
+    - 'db/**/*.rb'
+
 Layout/LineLength:
   Exclude:
+    - 'db/**/*.rb'
     - 'config/**/*.rb'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'db/**/*.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*.rb'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'db/**/*.rb'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'db/**/*.rb'
 
 Metrics/BlockLength:
   Exclude:
     - 'config/**/*.rb'
-
-Style/ClassAndModuleChildren:
-  Exclude:
-    - 'config/**/*.rb'
+    - 'spec/**/*.rb'

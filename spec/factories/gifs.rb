@@ -9,7 +9,7 @@ FactoryBot.define do
     public { false }
 
     after(:build) do |source|
-      image = File.open(Rails.root.join('spec', 'factories', 'images', 'lulu_wink.gif'))
+      image = File.open(Rails.root.join('spec/factories/images/lulu_wink.gif'))
       source.image.attach(io: image, filename: 'lulu_wink.gif')
     end
   end

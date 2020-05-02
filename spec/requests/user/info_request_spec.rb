@@ -44,7 +44,9 @@ RSpec.describe 'User::Infos', type: :request do
       expect do
         patch user_update_url, params: { user: new_attributes }
         user.reload
-      end.to change { user.displayname }.from(old_displayname).to(new_attributes[:displayname])
+      end.to change { user.displayname }
+        .from(old_displayname)
+        .to(new_attributes[:displayname])
     end
 
     it 'can not update username' do
@@ -52,7 +54,7 @@ RSpec.describe 'User::Infos', type: :request do
       expect do
         patch user_update_url, params: { user: { username: 'New Username' } }
         user.reload
-      end.not_to change { user.username }
+      end.not_to change(user, :username)
     end
   end
 

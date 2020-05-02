@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'User', type: :system, js: true do
   let(:user) do
-    user = create(:user,
+    create(:user,
       username: 'asacoco',
       displayname: 'old_displayname')
   end

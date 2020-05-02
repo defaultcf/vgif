@@ -6,7 +6,12 @@ RSpec.describe 'Api::Gifscoms', type: :request do
   describe 'GET /fetch_meta' do
     before do
       stub_request(:get, 'https://gifs.com/gif/3d3d-gZNDjZ')
-        .to_return(body: 'titleOfVideo = "武器を振り回す鈴原", yid = "29nfCCThT2k", start = "82.2", sample = "hogehoge"')
+        .to_return(body: '
+          titleOfVideo = "武器を振り回す鈴原",
+          yid = "29nfCCThT2k",
+          start = "82.2",
+          sample = "hogehoge",
+        ')
     end
 
     it 'returns http success' do

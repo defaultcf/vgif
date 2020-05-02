@@ -71,20 +71,20 @@ RSpec.describe '/gifs', type: :request do
     let(:attributes) do
       attributes_for(:gif,
         image: fixture_file_upload(
-          Rails.root.join('spec', 'factories', 'images', 'lulu_wink.gif'),
+          Rails.root.join('spec/factories/images/lulu_wink.gif'),
           'image/gif',
         ))
     end
     # 一先ず20MBを上限とする
     let(:largefile) do
       fixture_file_upload(
-        Rails.root.join('spec', 'factories', 'images', 'largefile_suichan.gif'),
+        Rails.root.join('spec/factories/images/largefile_suichan.gif'),
         'image/gif',
       )
     end
     let(:jpegfile) do
       fixture_file_upload(
-        Rails.root.join('spec', 'factories', 'images', 'me.jpg'),
+        Rails.root.join('spec/factories/images/me.jpg'),
         'image/jpeg',
       )
     end
@@ -107,7 +107,9 @@ RSpec.describe '/gifs', type: :request do
 
       it 'creates GIF with tags' do
         expect do
-          post gifs_url, params: { gif: attributes.merge(tag_list: [{ value: '鈴原るる' }].to_json) }
+          post gifs_url, params: {
+            gif: attributes.merge(tag_list: [{ value: '鈴原るる' }].to_json),
+          }
         end.to change(ActsAsTaggableOn::Tag, :count).by(1)
       end
 
@@ -127,7 +129,9 @@ RSpec.describe '/gifs', type: :request do
               Rails.root.join('spec/factories/images/lulu_wink.gif'),
             ),
           )
-        post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: 'https://j.gifs.com/OMz2yQ.gif') }
+        post gifs_url, params: {
+          gif: attributes_for(:gif, remote_image_url: 'https://j.gifs.com/OMz2yQ.gif'),
+        }
         expect(response).to redirect_to(gif_url(Gif.order(:created_at).last))
       end
     end
@@ -161,12 +165,16 @@ RSpec.describe '/gifs', type: :request do
       end
 
       it 'invalid remote image url' do
-        post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: '|ls') }
+        post gifs_url, params: {
+          gif: attributes_for(:gif, remote_image_url: '|ls'),
+        }
         expect(response).to render_template('gifs/new')
       end
 
       it 'remote image url includes not allowed host' do
-        post gifs_url, params: { gif: attributes_for(:gif, remote_image_url: 'https://media.giphy.com/media/VgZ9vXZuDZBYOwdzGu/giphy.gif') }
+        post gifs_url, params: {
+          gif: attributes_for(:gif, remote_image_url: 'https://media.giphy.com/media/VgZ9vXZuDZBYOwdzGu/giphy.gif'),
+        }
         expect(response).to render_template('gifs/new')
       end
     end
@@ -207,7 +215,7 @@ RSpec.describe '/gifs', type: :request do
     end
 
     context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it 'renders a successful response' do
         sign_in user
         gif = create(:gif, user: user)
         patch gif_url(gif), params: { gif: { title: '' } }
