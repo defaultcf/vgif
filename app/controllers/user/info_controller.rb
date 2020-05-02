@@ -13,7 +13,7 @@ class User::InfoController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, notice: t('.success') }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -25,7 +25,7 @@ class User::InfoController < ApplicationController
   def delete
     @user.destroy
 
-    flash[:notice] = 'さみしいです...いつでも戻ってきてくださいね'
+    flash[:notice] = t('.success')
     redirect_to root_path
   end
 

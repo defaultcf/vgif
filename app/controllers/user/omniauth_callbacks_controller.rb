@@ -11,13 +11,9 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     authorize
   end
 
-  def failure
-    set_flash_message! :alert, :failure, kind: 'Twitter', reason: failure_message
-    redirect_to root_path
-  end
-
   private
 
+  # rubocop:disable all
   def authorize
     @user = User.from_omniauth(request.env['omniauth.auth'])
 
@@ -31,4 +27,5 @@ class User::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_user_session_url
     end
   end
+  # rubocop:enable all
 end

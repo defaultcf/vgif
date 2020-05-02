@@ -1,0 +1,7 @@
+ja:
+  user:
+    info:
+      update:
+        success: '更新しました'
+      delete:
+        success: 'さみしいです...いつでも戻ってきてくださいね'
