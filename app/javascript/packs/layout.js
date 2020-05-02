@@ -39,16 +39,21 @@ const main = () => {
     background.addEventListener('click', closeModal);
   });
 
-  // Copy button
-  document.querySelectorAll('.copy-button').forEach(area => {
-    const input = area.querySelector('input');
-    const button = area.querySelector('button');
-    button.addEventListener('click', () => {
-      input.select();
-      document.execCommand('copy');
-      button.setAttribute('data-tooltip', button.getAttribute('data-tooltip-tmp'));
+  if (document.querySelector('.copy-button')) {
+    // Copy button
+    document.querySelectorAll('.copy-button').forEach(area => {
+      const input = area.querySelector('input');
+      const button = area.querySelector('button');
+      button.addEventListener('click', () => {
+        input.select();
+        document.execCommand('copy');
+        button.setAttribute('data-tooltip', button.getAttribute('data-tooltip-tmp'));
+      });
     });
-  });
+
+    // Ready thumbnail image
+    fetch(window.location.href + '.thumb_gif', { method: 'HEAD' })
+  }
 
   // Tagify
   const tagify_field = document.querySelector('input.tagify');
