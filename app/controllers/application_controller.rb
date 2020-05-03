@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   before_action :set_raven_context
 
+  def show_error
+    raise request.env['action_dispatch.exception']
+  end
+
   private
 
   def set_raven_context
