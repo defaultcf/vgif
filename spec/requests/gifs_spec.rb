@@ -227,6 +227,7 @@ RSpec.describe '/gifs', type: :request do
       sign_in create(:user, email: 'user2@example.com')
       gif = create(:gif, user: user)
       patch gif_url(gif), params: { gif: { title: 'aaa' } }
+      expect(response).to have_http_status(:forbidden)
       expect(response).to render_template('errors/403')
     end
   end

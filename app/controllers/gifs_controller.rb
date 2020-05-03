@@ -88,6 +88,6 @@ class GifsController < ApplicationController
   end
 
   def can_edit?
-    render 'errors/403', status: :forbidden unless @gif.editable?(current_user)
+    raise Forbidden unless @gif.editable?(current_user)
   end
 end
