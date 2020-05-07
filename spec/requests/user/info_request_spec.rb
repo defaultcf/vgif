@@ -12,9 +12,9 @@ RSpec.describe 'User::Infos', type: :request do
     end
 
     it 'returns 404 if user isnt exist' do
-      expect do
-        get user_url('test')
-      end.to raise_error(ActiveRecord::RecordNotFound)
+      get user_url('test')
+      expect(response).to have_http_status(:not_found)
+      expect(response).to render_template('errors/404')
     end
   end
 

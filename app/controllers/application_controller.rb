@@ -1,7 +1,13 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include CustomException
+
   before_action :set_raven_context
+
+  def show_error
+    raise request.env['action_dispatch.exception']
+  end
 
   private
 

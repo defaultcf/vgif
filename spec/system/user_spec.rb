@@ -45,6 +45,7 @@ RSpec.describe 'User', type: :system, js: true do
       gif2.save
 
       visit user_recommend_path
+      sleep 1
       expect(all('.gif').length).to eq 2
     end
   end
