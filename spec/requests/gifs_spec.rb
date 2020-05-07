@@ -30,6 +30,11 @@ RSpec.describe '/gifs', type: :request do
       get gif_url(@gif, format: :gif)
       expect(response).to redirect_to(image_public_url(@gif.image))
     end
+
+    it 'render 404 if not found' do
+      get gif_url('404')
+      expect(response).to render_template('errors/404')
+    end
   end
 
   describe 'GET /new' do
