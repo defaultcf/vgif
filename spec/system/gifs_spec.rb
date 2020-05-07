@@ -37,7 +37,7 @@ RSpec.describe 'Gifs', type: :system, js: true do
           sample = "hogehoge",
         ')
       fill_in('gif[remote_image_url]', with: 'https://j.gifs.com/gZNDjZ.gif')
-      sleep(1.5)
+      sleep(2)
       suggest_title = find('#gif_title').value
       suggest_source_url = find('#gif_source_url').value
       expect(suggest_title).to eq '武器を振り回す鈴原'

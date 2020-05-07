@@ -25,7 +25,7 @@ remote_url_field.addEventListener('input', e => {
     const json = await res.json();
     title_field.value = json.title;
     source_url_field.value = `https://youtu.be/${json.yid}?t=${Math.trunc(json.start)}`;
-  }, 1500);
+  }, 1000);
 });
 
 preview.addEventListener('click', () => {
