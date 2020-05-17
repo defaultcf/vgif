@@ -11,12 +11,12 @@
   <p class="title is-3 is-inline"><%= title @gif.title %></p>
   <% if @gif.editable?(current_user) %>
     <div class="buttons is-inline">
-      <%= link_to edit_gif_path(@gif), class: 'button' do %>
+      <%= link_to edit_gif_path(@gif), class: 'button is-link is-outlined' do %>
         <span class="icon">
           <i class="fas fa-edit"></i>
         </span>
       <% end %>
-      <button id="delete-button" class="button is-danger open-modal">
+      <button id="delete-button" class="button is-danger is-outlined open-modal">
         <span class="icon">
           <i class="far fa-trash-alt"></i>
         </span>
