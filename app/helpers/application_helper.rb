@@ -5,7 +5,7 @@ module ApplicationHelper
   def default_meta_tags
     {
       site: 'vGIF',
-      description: 'VTuberのGIFが集まる場所、vGIF',
+      description: 'VTuberの推したい瞬間をGIFで共有しよう',
       keywords: 'VTuber,GIF',
       charset: 'UTF-8',
       og: {

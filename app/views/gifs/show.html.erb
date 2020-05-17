@@ -1,6 +1,6 @@
 <%= javascript_pack_tag 'share', defer: true %>
 
-<% description "vGIFにアップロードされたGIF、「#{@gif.title}」のページ - VTuberのGIFが集まる場所、vGIF" %>
+<% description "vGIFにアップロードされたGIF、「#{@gif.title}」のページ - #{default_meta_tags[:description]}" %>
 <% keywords @gif.tag_list.join(',') %>
 <% set_meta_tags og: { image: image_public_url(ogp_image(@gif.image)) } %>
 <% set_meta_tags twitter: { card: 'summary_large_image' } %>
