@@ -14,6 +14,7 @@ module ApplicationHelper
         url: request.original_url,
         title: :full_title,
         description: :description,
+        image: asset_url('favicon.gif'),
       },
     }
   end
