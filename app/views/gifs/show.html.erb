@@ -1,6 +1,6 @@
 <%= javascript_pack_tag 'share', defer: true %>
 
-<% description "vGIFにアップロードされたGIF、「#{@gif.title}」のページ - VTuberのGIFが集まる場所、vGIF" %>
+<% description "vGIFにアップロードされたGIF、「#{@gif.title}」のページ - #{default_meta_tags[:description]}" %>
 <% keywords @gif.tag_list.join(',') %>
 <% set_meta_tags og: { image: image_public_url(ogp_image(@gif.image)) } %>
 <% set_meta_tags twitter: { card: 'summary_large_image' } %>
@@ -11,12 +11,12 @@
   <p class="title is-3 is-inline"><%= title @gif.title %></p>
   <% if @gif.editable?(current_user) %>
     <div class="buttons is-inline">
-      <%= link_to edit_gif_path(@gif), class: 'button' do %>
+      <%= link_to edit_gif_path(@gif), class: 'button is-link is-outlined' do %>
         <span class="icon">
           <i class="fas fa-edit"></i>
         </span>
       <% end %>
-      <button id="delete-button" class="button is-danger open-modal">
+      <button id="delete-button" class="button is-danger is-outlined open-modal">
         <span class="icon">
           <i class="far fa-trash-alt"></i>
         </span>
