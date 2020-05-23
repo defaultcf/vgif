@@ -9,6 +9,13 @@
   </div>
 </section>
 
+<div class="box">
+  <%= render partial: 'gifs/gifgrid', locals: { gifs: Gif.with_attached_image.first(4) } %>
+  <%= link_to gifs_path, class: 'button is-link is-fullwidth' do %>
+    <b>もっと見る</b>
+  <% end %>
+</div>
+
 <div class="container padding-20">
   <p class="title is-3">推したい瞬間を共有しよう</p>
   <div class="content">
@@ -27,6 +34,9 @@
         <figure class="image">
           <%= image_tag 'how_to_upload.gif' %>
         </figure>
+        <p>
+          手元にあるGIFをアップロードできるほか、 <a href="https://gifs.com">gifs.com</a> で作ったGIFのURLを貼ることで自動でGIF・タイトル・切り抜き元URLを入力できます。
+        </p>
       </div>
     </div>
     <div class="tile is-parent">
@@ -35,6 +45,9 @@
         <figure class="image">
           <%= image_tag 'how_to_share.gif' %>
         </figure>
+        <p>
+          <b>Discord</b>で唐突に貼ったり、<b>Twitter</b>でリプライに使ったり、<b>GitHub</b>でLGTMに使ったり。</p>
+        </p>
       </div>
     </div>
   </div>

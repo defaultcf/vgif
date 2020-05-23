@@ -9,6 +9,7 @@
 
 <div class="content">
   <p class="title is-3 is-inline"><%= title @gif.title %></p>
+
   <% if @gif.editable?(current_user) %>
     <div class="buttons is-inline">
       <%= link_to edit_gif_path(@gif), class: 'button is-link is-outlined' do %>
@@ -36,6 +37,14 @@
 
     </div>
   <% end %>
+
+  <p>
+    <% @gif.tag_list.map do |tag| %>
+      <%= link_to tag_path(tag) do %>
+        <span class="tag is-link">#<%= tag %></span>
+      <% end %>
+    <% end %>
+  </p>
 </div>
 
 <div class="field has-addons copy-button">
@@ -63,24 +72,12 @@
 
 <div class="content">
   <p>
-    <span class="icon">
-      <i class="fas fa-share-square"></i>
-    </span>
+    <b><%= Gif.human_attribute_name(:source_url) %></b>
     <%= link_to @gif.source_url, @gif.source_url, target: '_blank', rel: 'ugc noopener noreferrer' %>
   </p>
 
   <p>
-    <span class="icon">
-      <i class="fas fa-user"></i>
-    </span>
+    <b><%= Gif.human_attribute_name(:user) %></b>
     <%= link_to @gif.user.displayname, @gif.user %>
-  </p>
-
-  <p>
-    <% @gif.tag_list.map do |tag| %>
-      <%= link_to tag_path(tag) do %>
-        <span class="tag is-link">#<%= tag %></span>
-      <% end %>
-    <% end %>
   </p>
 </div>
